@@ -1,0 +1,20 @@
+*.[Cc]ache
+*.bak
+*.DS_Store
+[Tt]humbs.db
+
+# images
+# dist/img
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules
+
+# sass
+.sass-cache/
+*.css.map
+

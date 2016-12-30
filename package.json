@@ -1,0 +1,41 @@
+{
+  "name": "darklight",
+  "version": "0.1.0",
+  "description": "Darklight: small and clean lightbox script",
+  "main": "dist/js/darklight.js",
+  "author": "Rex Tsou <akccakccwww@gmail.com>",
+  "keywords": [
+    "darklight",
+    "lightbox",
+    "overlay"
+  ],
+  "license": "WTFPL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akccakcctw/darklight.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akccakcctw/darklight/issues"
+  },
+  "devDependencies": {
+    "archy": "^1.0.0",
+    "babel-preset-es2015": "^6.18.0",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-compass": "^2.1.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  },
+  "scripts": {
+    "test": "ls -a --color",
+    "gulp": "gulp",
+    "tree": "node bin/tree.js"
+  }
+}

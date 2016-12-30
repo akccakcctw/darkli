@@ -1,0 +1,85 @@
+img {
+  max-width: 100%;
+}
+
+.darklight {
+  opacity: 0;
+  transition: 0.3s;
+  position: fixed;
+  visibility: hidden;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  left: 0;
+  top: 0;
+  background: rgba(30, 30, 30, 0.8);
+  z-index: 99;
+  overflow: auto;
+}
+.darklight * {
+  box-sizing: border-box;
+}
+.darklight.is-active {
+  visibility: visible;
+  opacity: 1;
+}
+.darklight .close {
+  z-index: 100;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+  color: #fff;
+  opacity: .5;
+}
+.darklight .close:hover {
+  opacity: 1;
+}
+@media (max-width: 767px) {
+  .darklight .close {
+    position: fixed;
+    color: #000;
+    top: .5em;
+    right: .5em;
+  }
+}
+.darklight .content {
+  position: absolute;
+  width: 80%;
+  height: auto;
+  min-height: 85vh;
+  background: #fff;
+  margin: 2em auto;
+  padding: 1.2em 4em 1em;
+  text-align: justify;
+  border-radius: 3px;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+}
+@media (max-width: 767px) {
+  .darklight .content {
+    overflow-y: auto;
+    width: 95%;
+  }
+}
+@media (max-width: 479px) {
+  .darklight .content {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 1em;
+  }
+}
+.darklight .icon {
+  width: 25px;
+  height: 25px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=darklight.css.map */
