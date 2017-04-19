@@ -4,7 +4,7 @@
 
 ### Prerequisites
 - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)( we assume you have installed [node.js](https://nodejs.org/en/) ).
-- you must have to install `ruby` and `ruby-compass`.
+- `ruby` and `ruby-compass`.
 
 ### Getting Started
 
@@ -16,7 +16,6 @@ $ yarn install
 ```
 
 ### Usage
-
 
 ```bash
 # Build `sass`, `javascript`:
@@ -43,3 +42,6 @@ You can also use [LiveReload](https://chrome.google.com/webstore/detail/liverelo
 ```bash
 $ yarn run tree
 ```
+
+### License
+You just DO WHAT THE FUCK YOU WANT TO. [WTFPL](https://github.com/akccakcctw/darklight/blob/master/LICENSE)
