@@ -43,5 +43,5 @@ You can also use [LiveReload](https://chrome.google.com/webstore/detail/liverelo
 $ yarn run tree
 ```
 
-### License
+## License
 You just DO WHAT THE FUCK YOU WANT TO. [WTFPL](https://github.com/akccakcctw/darklight/blob/master/LICENSE)
