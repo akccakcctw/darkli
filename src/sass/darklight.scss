@@ -1,22 +1,17 @@
 @import 'mixin/_breakpoint';
-
-img {
-    max-width: 100%;
-}
-
 .darklight {
     * {
         box-sizing: border-box;
     }
-    opacity: 0;
-    transition: 0.3s;
     position: fixed;
+    opacity: 0;
     visibility: hidden;
     width: 100%;
-    min-height: 100vh;
     height: auto;
+    min-height: 100vh;
     left: 0;
     top: 0;
+    transition: 0.3s ease-in-out;
     background: rgba(30, 30, 30, 0.8);
     z-index: 99;
     overflow: auto;
@@ -34,10 +29,16 @@ img {
         top: 2rem;
         color: #fff;
         opacity: .5;
+        transition: .1s ease-in-out;
         &:hover {
             opacity: 1;
         }
-        @media (max-width: 767px) {
+        .icon {
+            width: 25px;
+            height: 25px;
+            filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .5));
+        }
+        @include for-phone-only {
             position: fixed;
             color: #000;
             top: .5em;
@@ -46,31 +47,30 @@ img {
     }
     .content {
         position: absolute;
-        width: 80%;
-        height: auto;
-        min-height: 85vh;
         background: #fff;
-        margin: 2em auto;
-        padding: 1.2em 4em 1em;
         text-align: justify;
-        border-radius: 3px;
-        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: auto;
         left: 0;
         right: 0;
-        @media (max-width: 767px) {
-            overflow-y: auto;
-            width: 95%;
-        }
-        @media (max-width: 479px) {
+        @include for-phone-only {
             width: 100%;
             height: 100vh;
             margin: 0;
-            padding: 1em;
+            padding: 16px;
+            padding-top: 40px;
+        }
+        @include for-tablet-portrait-up {
+            width: 80%;
+            height: auto;
+            min-height: 85vh;
+            margin: 2em auto;
+            padding: 1.2em 4em 1em;
+            border-radius: 3px;
         }
     }
-    .icon {
-        width: 25px;
-        height: 25px;
+    img {
+        max-width: 100%;
     }
 }
 
