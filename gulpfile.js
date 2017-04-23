@@ -1,17 +1,27 @@
 /* eslint no-param-reassign:0 */
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
+const browserSync = require('browser-sync').create(); // browser auto reload
 const $ = gulpLoadPlugins();
 
-gulp.task('default', ['js', 'css']);
+gulp.task('default', ['js', 'css', 'demo']);
 
-gulp.task('min', ['js-min', 'css-min']);
+gulp.task('browserSync', ['default'], () => {
+  browserSync.init({
+    notify: false,
+    port: 8000,
+    server: {
+      baseDir: 'demo'
+    },
+  });
+});
 
-gulp.task('watch', () => {
-  $.livereload.listen();
+gulp.task('watch', ['browserSync'], () => {
   gulp.watch('src/**/*.js', ['js', 'js-demo']);
   gulp.watch('src/**/*.scss', ['css', 'css-demo']);
 });
+
+gulp.task('min', ['js-min', 'css-min']);
 
 gulp.task('js', () => {
   gulp.src('src/**/*.js')
@@ -24,7 +34,6 @@ gulp.task('js', () => {
       message: 'Compile Javascript Complete!',
       onLast: true,
     }))
-    .pipe($.livereload());
 });
 
 gulp.task('js-min', () => {
@@ -40,7 +49,6 @@ gulp.task('js-min', () => {
       message: 'Minify Javascript Complete!',
       onLast: true,
     }))
-    .pipe($.livereload());
 });
 
 gulp.task('css', () => {
@@ -57,7 +65,6 @@ gulp.task('css', () => {
       message: 'Compile Sass Complete!',
       onLast: true,
     }))
-    .pipe($.livereload());
 });
 
 gulp.task('css-min', () => {
@@ -76,7 +83,6 @@ gulp.task('css-min', () => {
       message: 'Minify Sass Complete!',
       onLast: true,
     }))
-    .pipe($.livereload());
 });
 
 // for demo
@@ -92,7 +98,7 @@ gulp.task('js-demo', () => {
       message: 'Compile Javascript Complete!',
       onLast: true,
     }))
-    .pipe($.livereload());
+    .pipe(browserSync.stream())
 });
 
 gulp.task('css-demo', () => {
@@ -108,5 +114,5 @@ gulp.task('css-demo', () => {
       message: 'Compile Sass Complete!',
       onLast: true,
     }))
-    .pipe($.livereload());
+    .pipe(browserSync.stream())
 });
