@@ -20,7 +20,10 @@ gulp.task('js', () => {
       presets: ['es2015'],
     }))
     .pipe(gulp.dest('dist/')) // output folder
-    .pipe($.notify('Build Javascript Complete!'))
+    .pipe($.notify({
+      message: 'Compile Javascript Complete!',
+      onLast: true,
+    }))
     .pipe($.livereload());
 });
 
@@ -33,7 +36,10 @@ gulp.task('js-min', () => {
     .pipe($.uglify()) // minify
     .pipe($.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist/')) // output folder
-    .pipe($.notify('Minify Javascript Complete!'))
+    .pipe($.notify({
+      message: 'Minify Javascript Complete!',
+      onLast: true,
+    }))
     .pipe($.livereload());
 });
 
@@ -45,8 +51,12 @@ gulp.task('css', () => {
       sass: 'src/sass/',
       css: 'dist/css/',
     }))
+    .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('dist/css')) // output folder
-    .pipe($.notify('Compile Sass Complete!'))
+    .pipe($.notify({
+      message: 'Compile Sass Complete!',
+      onLast: true,
+    }))
     .pipe($.livereload());
 });
 
@@ -58,10 +68,14 @@ gulp.task('css-min', () => {
       sass: 'src/sass/',
       css: 'dist/css/',
     }))
+    .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe($.cssnano()) // minify css
     .pipe($.rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist/css')) // output folder
-    .pipe($.notify('Minify Sass Complete!'))
+    .pipe($.notify({
+      message: 'Minify Sass Complete!',
+      onLast: true,
+    }))
     .pipe($.livereload());
 });
 
@@ -73,9 +87,11 @@ gulp.task('js-demo', () => {
     .pipe($.babel({
       presets: ['es2015'],
     }))
-    // .pipe(uglify()) //minify
     .pipe(gulp.dest('demo/')) // output folder
-    .pipe($.notify('Build Javascript Complete!'))
+    .pipe($.notify({
+      message: 'Compile Javascript Complete!',
+      onLast: true,
+    }))
     .pipe($.livereload());
 });
 
@@ -86,7 +102,11 @@ gulp.task('css-demo', () => {
       sass: 'src/sass/',
       css: 'demo/',
     }))
+    .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('demo/')) // output folder
-    .pipe($.notify('Compile Sass Complete!'))
+    .pipe($.notify({
+      message: 'Compile Sass Complete!',
+      onLast: true,
+    }))
     .pipe($.livereload());
 });
