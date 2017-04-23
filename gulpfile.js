@@ -24,12 +24,12 @@ gulp.task('watch', ['browserSync'], () => {
 gulp.task('min', ['js-min', 'css-min']);
 
 gulp.task('js', () => {
-  gulp.src('src/**/*.js')
+  gulp.src('src/js/**/*.js')
     .pipe($.plumber())
     .pipe($.babel({
       presets: ['es2015'],
     }))
-    .pipe(gulp.dest('dist/')) // output folder
+    .pipe(gulp.dest('dist/js')) // output folder
     .pipe($.notify({
       message: 'Compile Javascript Complete!',
       onLast: true,
@@ -37,14 +37,14 @@ gulp.task('js', () => {
 });
 
 gulp.task('js-min', () => {
-  gulp.src('src/**/*.js')
+  gulp.src('src/js/**/*.js')
     .pipe($.plumber())
     .pipe($.babel({
       presets: ['es2015'],
     }))
     .pipe($.uglify()) // minify
     .pipe($.rename({ suffix: '.min' }))
-    .pipe(gulp.dest('dist/')) // output folder
+    .pipe(gulp.dest('dist/js')) // output folder
     .pipe($.notify({
       message: 'Minify Javascript Complete!',
       onLast: true,
@@ -52,13 +52,13 @@ gulp.task('js-min', () => {
 });
 
 gulp.task('css', () => {
-  gulp.src('src/**/*.scss')
+  gulp.src('src/sass/**/*.scss')
     .pipe($.plumber())
-    .pipe($.compass({
-      config_file: './config.rb',
-      sass: 'src/sass/',
-      css: 'dist/css/',
-    }))
+    .pipe($.sass.sync({
+      outputStyle: 'nested', // expanded, nested, compact, compressed
+      precision: 10,
+      includePath: ['.'],
+    }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('dist/css')) // output folder
     .pipe($.notify({
@@ -68,13 +68,13 @@ gulp.task('css', () => {
 });
 
 gulp.task('css-min', () => {
-  gulp.src('src/**/*.scss')
+  gulp.src('src/sass/**/*.scss')
     .pipe($.plumber())
-    .pipe($.compass({
-      config_file: './config.rb',
-      sass: 'src/sass/',
-      css: 'dist/css/',
-    }))
+    .pipe($.sass.sync({
+      outputStyle: 'compressed',
+      precision: 10,
+      includePath: ['.']
+    }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe($.cssnano()) // minify css
     .pipe($.rename({ suffix: '.min' }))
@@ -89,11 +89,11 @@ gulp.task('css-min', () => {
 gulp.task('demo', ['js-demo', 'css-demo']);
 
 gulp.task('js-demo', () => {
-  gulp.src('src/js/*.js')
+  gulp.src('src/js/**/*.js')
     .pipe($.babel({
       presets: ['es2015'],
     }))
-    .pipe(gulp.dest('demo/')) // output folder
+    .pipe(gulp.dest('demo')) // output folder
     .pipe($.notify({
       message: 'Compile Javascript Complete!',
       onLast: true,
@@ -102,12 +102,12 @@ gulp.task('js-demo', () => {
 });
 
 gulp.task('css-demo', () => {
-  gulp.src('src/**/*.scss')
-    .pipe($.compass({
-      config_file: './config.rb',
-      sass: 'src/sass/',
-      css: 'demo/',
-    }))
+  gulp.src('src/sass/**/*.scss')
+    .pipe($.sass.sync({
+      outputStyle: 'nested',
+      precision: 10,
+      includePath: ['.']
+    }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('demo/')) // output folder
     .pipe($.notify({
