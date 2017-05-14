@@ -2,6 +2,7 @@
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create(); // browser auto reload
+
 const $ = gulpLoadPlugins();
 
 gulp.task('default', ['js', 'css', 'demo']);
@@ -11,7 +12,7 @@ gulp.task('browserSync', ['default'], () => {
     notify: false,
     port: 8000,
     server: {
-      baseDir: 'demo'
+      baseDir: 'demo',
     },
   });
 });
@@ -33,7 +34,7 @@ gulp.task('js', () => {
     .pipe($.notify({
       message: 'Compile Javascript Complete!',
       onLast: true,
-    }))
+    }));
 });
 
 gulp.task('js-min', () => {
@@ -48,7 +49,7 @@ gulp.task('js-min', () => {
     .pipe($.notify({
       message: 'Minify Javascript Complete!',
       onLast: true,
-    }))
+    }));
 });
 
 gulp.task('css', () => {
@@ -64,7 +65,7 @@ gulp.task('css', () => {
     .pipe($.notify({
       message: 'Compile Sass Complete!',
       onLast: true,
-    }))
+    }));
 });
 
 gulp.task('css-min', () => {
@@ -73,7 +74,7 @@ gulp.task('css-min', () => {
     .pipe($.sass.sync({
       outputStyle: 'compressed',
       precision: 10,
-      includePath: ['.']
+      includePath: ['.'],
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe($.cssnano()) // minify css
@@ -82,7 +83,7 @@ gulp.task('css-min', () => {
     .pipe($.notify({
       message: 'Minify Sass Complete!',
       onLast: true,
-    }))
+    }));
 });
 
 // for demo
@@ -98,7 +99,7 @@ gulp.task('js-demo', () => {
       message: 'Compile Javascript Complete!',
       onLast: true,
     }))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 });
 
 gulp.task('css-demo', () => {
@@ -106,7 +107,7 @@ gulp.task('css-demo', () => {
     .pipe($.sass.sync({
       outputStyle: 'nested',
       precision: 10,
-      includePath: ['.']
+      includePath: ['.'],
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe(gulp.dest('demo/')) // output folder
@@ -114,5 +115,5 @@ gulp.task('css-demo', () => {
       message: 'Compile Sass Complete!',
       onLast: true,
     }))
-    .pipe(browserSync.stream())
+    .pipe(browserSync.stream());
 });
