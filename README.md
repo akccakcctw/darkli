@@ -35,7 +35,7 @@ $ yarn run gulp css-min
 
 ```
 
-You can also use [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei) plugin with command `$ yarn run gulp watch` to fasten your development.
+Checking gulpfile.js for more details.
 
 ### Show Structure
 
