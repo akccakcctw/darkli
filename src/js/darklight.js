@@ -15,28 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
       };
   }
   const box = document.querySelector('.darklight');
-  const btnOpens = document.querySelectorAll('.darklight-btn');
-  const btnClose = document.querySelector('.darklight .close');
-  const openBox = () => {
+  const btnOpens = document.querySelectorAll('[data-darklight]');
+  const btnClose = document.querySelector('.darklight .darklight-close');
+  const openBox = (targetContent) => {
     history.pushState(null, null, document.URL); // prevent go back out of page
     box.classList.add('is-active');
+    box.querySelector(`[data-darklight-content=${targetContent}]`).classList.add('is-active');
   };
   const closeBox = (popHistory = true) => {
     if (box.classList.contains('is-active')) {
       box.classList.remove('is-active');
+      box.querySelectorAll('.darklight-content').forEach(content => content.classList.remove('is-active'));
       if (popHistory === true) {
         history.go(-1);
       }
     }
   };
   if (box !== null) {
-    Array.from(btnOpens).forEach(i => i.addEventListener('click', openBox));
+    Array.from(btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
+      openBox(btnOpen.dataset.darklight);
+    }));
     btnClose.addEventListener('click', () => { closeBox(); });
 
     document.addEventListener('mouseup', (e) => {
-      const content = document.querySelector('.darklight .content');
-      // click outer space to clise darklight
-      if (!e.target.matches('.darklight .content') && !content.contains(e.target)) {
+      const content = document.querySelector('.darklight .darklight-content');
+      // click outer space to close darklight
+      if (!e.target.matches('.darklight .darklight-content') && !content.contains(e.target)) {
         closeBox();
       }
     });
@@ -49,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('popstate', () => { closeBox(false); });
 
     // close icon
-    const closeIcon = document.querySelector('.darklight .icon use');
+    const closeIcon = document.querySelector('.darklight .darklight-icon use');
     const closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
 
     const cW = document.body.clientWidth;

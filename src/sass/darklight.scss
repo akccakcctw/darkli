@@ -19,7 +19,7 @@
         visibility: visible;
         opacity: 1
     }
-    .close {
+    .darklight-close {
         position: fixed;
         z-index: 100;
         background-color: transparent;
@@ -36,7 +36,7 @@
         &:hover {
             opacity: 1;
         }
-        .icon {
+        .darklight-icon {
             width: 20px;
             height: 20px;
             filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .5));
@@ -46,7 +46,8 @@
             }
         }
     }
-    .content {
+    .darklight-content {
+        display: none;
         position: absolute;
         background: #fff;
         text-align: justify;
@@ -66,6 +67,9 @@
             margin: 32px auto;
             padding: 24px 32px 16px;
             border-radius: 3px;
+        }
+        &.is-active {
+            display: initial;
         }
     }
     img {

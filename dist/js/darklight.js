@@ -11,34 +11,40 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
   var box = document.querySelector('.darklight');
-  var btnOpens = document.querySelectorAll('.darklight-btn');
-  var btnClose = document.querySelector('.darklight .close');
-  var openBox = function openBox() {
+  var btnOpens = document.querySelectorAll('[data-darklight]');
+  var btnClose = document.querySelector('.darklight .darklight-close');
+  var openBox = function openBox(targetContent) {
     history.pushState(null, null, document.URL); // prevent go back out of page
     box.classList.add('is-active');
+    box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
   };
   var closeBox = function closeBox() {
     var popHistory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
     if (box.classList.contains('is-active')) {
       box.classList.remove('is-active');
+      box.querySelectorAll('.darklight-content').forEach(function (content) {
+        return content.classList.remove('is-active');
+      });
       if (popHistory === true) {
         history.go(-1);
       }
     }
   };
   if (box !== null) {
-    Array.from(btnOpens).forEach(function (i) {
-      return i.addEventListener('click', openBox);
+    Array.from(btnOpens).forEach(function (btnOpen) {
+      return btnOpen.addEventListener('click', function () {
+        openBox(btnOpen.dataset.darklight);
+      });
     });
     btnClose.addEventListener('click', function () {
       closeBox();
     });
 
     document.addEventListener('mouseup', function (e) {
-      var content = document.querySelector('.darklight .content');
-      // click outer space to clise darklight
-      if (!e.target.matches('.darklight .content') && !content.contains(e.target)) {
+      var content = document.querySelector('.darklight .darklight-content');
+      // click outer space to close darklight
+      if (!e.target.matches('.darklight .darklight-content') && !content.contains(e.target)) {
         closeBox();
       }
     });
@@ -54,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // close icon
-    var closeIcon = document.querySelector('.darklight .icon use');
+    var closeIcon = document.querySelector('.darklight .darklight-icon use');
     var closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
 
     var cW = document.body.clientWidth;

@@ -4,26 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>Darklight: small and clean lightbox script</title>
+  <title>Darklight: Small and Clean Lightbox Script</title>
   <link rel="stylesheet" href="darklight.css">
 </head>
 
 <body>
-  <button class="darklight-btn" data-darklight="test1">test</button>
-  <button class="darklight-btn" data-darklight="test2">testwwww</button>
+  <h1 class="title title--main">Darklight: Small and Clean Lightbox Script</h1>
+  <button class="btn" data-darklight="c1">test</button>
+  <button class="btn" data-darklight="c2">testwwww</button>
   <div class="darklight">
-    <button class="close">
-      <svg class="icon">
+    <button class="darklight-close">
+      <svg class="darklight-icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="img/icons.svg#close"></use>
       </svg>
     </button>
-    <div class="content">
-      <div class="item" data-item="test1">
-        hi all!!!!
-      </div>
-      <div class="item" data-item="test2">
-        o-hi-yo~
-      </div>
+    <div class="darklight-content" data-darklight-content="c1">
+      <p>Content 1</p>
+      <ul class="list">
+        <li class="item">item 1</li>
+        <li class="item">item 2</li>
+        <li class="item">item 3</li>
+      </ul>
+    </div>
+    <div class="darklight-content" data-darklight-content="c2">
+      <p>Content 2</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore, deleniti.</p>
+      <p>Lorem ipsum dolor sit amet.</p>
     </div>
   </div>
 </body>

@@ -7,16 +7,18 @@
   min-height: 100vh;
   left: 0;
   top: 0;
+  -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
   background: rgba(30, 30, 30, 0.8);
   z-index: 99;
   overflow: auto; }
   .darklight * {
-    box-sizing: border-box; }
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
   .darklight.is-active {
     visibility: visible;
     opacity: 1; }
-  .darklight .close {
+  .darklight .darklight-close {
     position: fixed;
     z-index: 100;
     background-color: transparent;
@@ -25,22 +27,25 @@
     top: 5px;
     right: 5px;
     opacity: .5;
+    -webkit-transition: .1s ease-in-out;
     transition: .1s ease-in-out; }
     @media (min-width: 600px) {
-      .darklight .close {
+      .darklight .darklight-close {
         top: 30px;
         right: 20px; } }
-    .darklight .close:hover {
+    .darklight .darklight-close:hover {
       opacity: 1; }
-    .darklight .close .icon {
+    .darklight .darklight-close .darklight-icon {
       width: 20px;
       height: 20px;
-      filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5)); }
+      -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
+              filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5)); }
       @media (min-width: 600px) {
-        .darklight .close .icon {
+        .darklight .darklight-close .darklight-icon {
           width: 25px;
           height: 25px; } }
-  .darklight .content {
+  .darklight .darklight-content {
+    display: none;
     position: absolute;
     background: #fff;
     text-align: justify;
@@ -54,13 +59,15 @@
     padding: 16px;
     padding-top: 40px; }
     @media (min-width: 600px) {
-      .darklight .content {
+      .darklight .darklight-content {
         width: 80%;
         height: auto;
         min-height: 85vh;
         margin: 32px auto;
         padding: 24px 32px 16px;
         border-radius: 3px; } }
+    .darklight .darklight-content.is-active {
+      display: initial; }
   .darklight img {
     max-width: 100%; }
 
