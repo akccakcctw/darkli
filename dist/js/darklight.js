@@ -5,6 +5,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (function (window) {
+  var query = function query(selectors) {
+    var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+    return baseEl.querySelector(selectors);
+  };
+  var queryAll = function queryAll(selectors) {
+    var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+    return baseEl.querySelectorAll(selectors);
+  };
+
   var Darklight = function () {
     function Darklight() {
       _classCallCheck(this, Darklight);
@@ -39,20 +48,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }, {
       key: 'init',
-      value: function init(_ref) {
+      value: function init(config) {
         var _this = this;
 
-        var _ref$box = _ref.box,
-            box = _ref$box === undefined ? document.querySelector('.darklight') : _ref$box,
-            _ref$btnOpens = _ref.btnOpens,
-            btnOpens = _ref$btnOpens === undefined ? document.querySelectorAll('[data-darklight]') : _ref$btnOpens,
-            _ref$btnClose = _ref.btnClose,
-            btnClose = _ref$btnClose === undefined ? document.querySelector('.darklight .darklight-close') : _ref$btnClose;
-
         // configs
-        this.box = box;
-        this.btnOpens = btnOpens;
-        this.btnClose = btnClose;
+        config = Object.assign({
+          box: '.darklight',
+          contents: '.darklight-content',
+          btnOpens: '[data-darklight]',
+          btnClose: '.darklight .darklight-close'
+        }, config);
+        this.box = query(config.box);
+        this.btnOpens = queryAll(config.btnOpens);
+        this.btnClose = query(config.btnClose);
 
         // default functions
         if (this.box !== null) {

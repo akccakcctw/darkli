@@ -1,4 +1,6 @@
 (function (window) {
+  const query = (selectors, baseEl = document) => baseEl.querySelector(selectors);
+  const queryAll = (selectors, baseEl = document) => baseEl.querySelectorAll(selectors);
   class Darklight {
     constructor() {
       this.version = '0.1.0';
@@ -20,15 +22,18 @@
         }
       }
     }
-    init({
-      box = document.querySelector('.darklight'),
-      btnOpens = document.querySelectorAll('[data-darklight]'),
-      btnClose = document.querySelector('.darklight .darklight-close'),
-    }) {
+
+    init(config) {
       // configs
-      this.box = box;
-      this.btnOpens = btnOpens;
-      this.btnClose = btnClose;
+      config = Object.assign({
+        box: '.darklight',
+        contents: '.darklight-content',
+        btnOpens: '[data-darklight]',
+        btnClose: '.darklight .darklight-close',
+      }, config);
+      this.box = query(config.box);
+      this.btnOpens = queryAll(config.btnOpens);
+      this.btnClose = query(config.btnClose);
 
       // default functions
       if (this.box !== null) {
