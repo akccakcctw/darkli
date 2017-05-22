@@ -4,7 +4,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-(function (window) {
+(function () {
   var query = function query(selectors) {
     var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
     return baseEl.querySelector(selectors);
@@ -116,9 +116,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     return Darklight;
   }();
 
-  if (typeof window.Darklight === 'undefined') {
-    window.Darklight = new Darklight();
+  if (typeof exports === 'undefined') {
+    if (typeof window.Darklight !== 'undefined') {
+      console.error('Darklight already defined.');
+      return;
+    }
+    window.Darklight = Darklight;
   } else {
-    console.error('Darklight already defined.');
+    module.exports = Darklight;
   }
-})(window);
+})();

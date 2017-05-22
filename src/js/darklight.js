@@ -1,4 +1,4 @@
-(function (window) {
+(function () {
   const query = (selectors, baseEl = document) => baseEl.querySelector(selectors);
   const queryAll = (selectors, baseEl = document) => baseEl.querySelectorAll(selectors);
   class Darklight {
@@ -77,12 +77,15 @@
         });
       }
     }
-
   }
 
-  if (typeof (window.Darklight) === 'undefined') {
-    window.Darklight = new Darklight();
+  if (typeof exports === 'undefined') {
+    if (typeof window.Darklight !== 'undefined') {
+      console.error('Darklight already defined.');
+      return;
+    }
+    window.Darklight = Darklight;
   } else {
-    console.error('Darklight already defined.');
+    module.exports = Darklight;
   }
-}(window));
+}());
