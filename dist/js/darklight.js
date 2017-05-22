@@ -110,6 +110,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           });
         }
+        return this;
       }
     }]);
 
@@ -121,7 +122,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       console.error('Darklight already defined.');
       return;
     }
-    window.Darklight = Darklight;
+    window.Darklight = new Darklight();
   } else {
     module.exports = Darklight;
   }

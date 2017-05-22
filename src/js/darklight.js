@@ -76,6 +76,7 @@
           }
         });
       }
+      return this;
     }
   }
 
@@ -84,7 +85,7 @@
       console.error('Darklight already defined.');
       return;
     }
-    window.Darklight = Darklight;
+    window.Darklight = new Darklight();
   } else {
     module.exports = Darklight;
   }
