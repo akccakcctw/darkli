@@ -13,6 +13,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
     return baseEl.querySelectorAll(selectors);
   };
+  var updateQueryStringParameter = function updateQueryStringParameter(uri, key, value) {
+    var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+    var separator = uri.indexOf('?') !== -1 ? '&' : '?';
+    if (uri.match(re)) {
+      return uri.replace(re, '$1' + key + '=' + value + '$2');
+    }
+    return uri + separator + key + '=' + value;
+  };
 
   var Darklight = function () {
     function Darklight() {
@@ -26,8 +34,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     _createClass(Darklight, [{
       key: 'openBox',
-      value: function openBox(targetContent) {
-        history.pushState(null, null, document.URL); // prevent go back out of page
+      value: function openBox(e, targetContent) {
+        var target = e.target.dataset.darklight;
+        var newURL = updateQueryStringParameter(document.URL, 'darklight', target);
+        history.pushState(target, null, newURL);
         this.box.classList.add('is-active');
         this.box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
       }
@@ -65,8 +75,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         // default functions
         if (this.box !== null) {
           Array.from(this.btnOpens).forEach(function (btnOpen) {
-            return btnOpen.addEventListener('click', function () {
-              _this.openBox(btnOpen.dataset.darklight);
+            return btnOpen.addEventListener('click', function (e) {
+              _this.openBox(e, btnOpen.dataset.darklight);
             });
           });
           this.btnClose.addEventListener('click', function () {

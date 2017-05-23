@@ -1,6 +1,14 @@
 (function () {
   const query = (selectors, baseEl = document) => baseEl.querySelector(selectors);
   const queryAll = (selectors, baseEl = document) => baseEl.querySelectorAll(selectors);
+  const updateQueryStringParameter = (uri, key, value) => {
+    const re = new RegExp(`([?&])${key}=.*?(&|$)`, 'i');
+    const separator = uri.indexOf('?') !== -1 ? '&' : '?';
+    if (uri.match(re)) {
+      return uri.replace(re, `$1${key}=${value}$2`);
+    }
+    return `${uri + separator + key}=${value}`;
+  };
   class Darklight {
     constructor() {
       this.version = '0.1.0';
@@ -8,8 +16,10 @@
       this.bugs = 'https://github.com/akccakcctw/darklight/issues';
       this.license = 'WTFPL';
     }
-    openBox(targetContent) {
-      history.pushState(null, null, document.URL); // prevent go back out of page
+    openBox(e, targetContent) {
+      const target = e.target.dataset.darklight;
+      const newURL = updateQueryStringParameter(document.URL, 'darklight', target);
+      history.pushState(target, null, newURL);
       this.box.classList.add('is-active');
       this.box.querySelector(`[data-darklight-content=${targetContent}]`).classList.add('is-active');
     }
@@ -37,8 +47,8 @@
 
       // default functions
       if (this.box !== null) {
-        Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
-          this.openBox(btnOpen.dataset.darklight);
+        Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', (e) => {
+          this.openBox(e, btnOpen.dataset.darklight);
         }));
         this.btnClose.addEventListener('click', () => { this.closeBox(); });
 
