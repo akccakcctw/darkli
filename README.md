@@ -4,7 +4,6 @@
 
 ### Prerequisites
 - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)( we assume you have installed [node.js](https://nodejs.org/en/) ).
-- `ruby` and `ruby-compass`.
 
 ### Getting Started
 
