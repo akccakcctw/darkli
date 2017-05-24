@@ -1,8 +1,4 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Darklight = factory());
-}(this, (function () { 'use strict';
+'use strict';
 
 var CONFIG = {
   box: '.darklight',
@@ -165,6 +161,4 @@ if (typeof exports === 'undefined' && typeof window.Darklight !== 'undefined') {
   window.Darklight = Darklight;
 }
 
-return Darklight;
-
-})));
+module.exports = Darklight;

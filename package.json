@@ -19,25 +19,32 @@
   },
   "devDependencies": {
     "archy": "^1.0.0",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.18.8",
     "eslint": "^3.12.2",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
-    "gulp-babel": "^6.1.2",
     "gulp-cssnano": "^2.1.2",
     "gulp-load-plugins": "^1.5.0",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
+    "gulp-run": "^1.7.1",
     "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.0.0"
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-watch": "^3.2.2",
+    "uglify-js": "^3.0.11"
   },
   "scripts": {
     "test": "ls -a --color",
     "gulp": "gulp",
-    "tree": "node bin/tree.js"
+    "tree": "node bin/tree.js",
+    "build:js": "rollup -c",
+    "compress:js": "uglifyjs dist/darklight.js -o dist/darklight.min.js -c -m --comments /^!/",
+    "watch:js": "rollup -c -w -m"
   }
 }

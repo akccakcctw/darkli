@@ -18,34 +18,23 @@ gulp.task('browserSync', ['default'], () => {
 });
 
 gulp.task('watch', ['browserSync'], () => {
-  gulp.watch('src/**/*.js', ['js', 'js-demo']);
+  gulp.watch('src/**/*.js', ['js']);
   gulp.watch('src/**/*.scss', ['css', 'css-demo']);
 });
 
 gulp.task('min', ['js-min', 'css-min']);
 
 gulp.task('js', () => {
-  gulp.src('src/js/**/*.js')
-    .pipe($.plumber())
-    .pipe($.babel({
-      presets: ['es2015'],
-    }))
-    .pipe(gulp.dest('dist/js')) // output folder
+  $.run('yarn run build:js').exec()
     .pipe($.notify({
       message: 'Compile Javascript Complete!',
       onLast: true,
-    }));
+    }))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('js-min', () => {
-  gulp.src('src/js/**/*.js')
-    .pipe($.plumber())
-    .pipe($.babel({
-      presets: ['es2015'],
-    }))
-    .pipe($.uglify()) // minify
-    .pipe($.rename({ suffix: '.min' }))
-    .pipe(gulp.dest('dist/js')) // output folder
+  $.run('yarn run compress:js').exec()
     .pipe($.notify({
       message: 'Minify Javascript Complete!',
       onLast: true,
@@ -61,7 +50,7 @@ gulp.task('css', () => {
       includePath: ['.'],
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
-    .pipe(gulp.dest('dist/css')) // output folder
+    .pipe(gulp.dest('dist')) // output folder
     .pipe($.notify({
       message: 'Compile Sass Complete!',
       onLast: true,
@@ -79,7 +68,7 @@ gulp.task('css-min', () => {
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
     .pipe($.cssnano()) // minify css
     .pipe($.rename({ suffix: '.min' }))
-    .pipe(gulp.dest('dist/css')) // output folder
+    .pipe(gulp.dest('dist')) // output folder
     .pipe($.notify({
       message: 'Minify Sass Complete!',
       onLast: true,
@@ -87,20 +76,7 @@ gulp.task('css-min', () => {
 });
 
 // for demo
-gulp.task('demo', ['js-demo', 'css-demo']);
-
-gulp.task('js-demo', () => {
-  gulp.src('src/js/**/*.js')
-    .pipe($.babel({
-      presets: ['es2015'],
-    }))
-    .pipe(gulp.dest('demo')) // output folder
-    .pipe($.notify({
-      message: 'Compile Javascript Complete!',
-      onLast: true,
-    }))
-    .pipe(browserSync.stream());
-});
+gulp.task('demo', ['css-demo']);
 
 gulp.task('css-demo', () => {
   gulp.src('src/sass/**/*.scss')
@@ -110,7 +86,7 @@ gulp.task('css-demo', () => {
       includePath: ['.'],
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({ browsers: ['last 2 versions'] }))
-    .pipe(gulp.dest('demo/')) // output folder
+    .pipe(gulp.dest('demo')) // output folder
     .pipe($.notify({
       message: 'Compile Sass Complete!',
       onLast: true,
