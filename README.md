@@ -1,8 +1,19 @@
 # Darklight: small and clean lightbox script
 
-## Develop
+## Usage
+
+Directly download the files below
+  - [CSS](https://raw.githubusercontent.com/akccakcctw/darklight/master/dist/css/darklight.min.css)
+  - [JS](https://raw.githubusercontent.com/akccakcctw/darklight/master/dist/js/darklight.min.js)
+
+Or using from CDN
+  - [CSS](https://cdn.rawgit.com/akccakcctw/darklight/master/dist/css/darklight.min.css)
+  - [JS](https://cdn.rawgit.com/akccakcctw/darklight/master/dist/js/darklight.min.js)
+
+## Development
 
 ### Prerequisites
+
 - [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)( we assume you have installed [node.js](https://nodejs.org/en/) ).
 
 ### Getting Started
@@ -10,14 +21,14 @@
 Before coding, you need to install packages for development, we choose [gulp](http://gulpjs.com/) as our build system.
 
 ```bash
-# install all building tools
-$ yarn install
+# install all building tools and dependencies
+$ yarn
 ```
 
 ### Usage
 
 ```bash
-# Build `sass`, `javascript`:
+# Build `sass`, `javascript` and `demo`:
 $ yarn run gulp
 
 # Watch and build `sass`, `javascript`
@@ -36,7 +47,9 @@ $ yarn run gulp css-min
 
 Checking gulpfile.js for more details.
 
-### Show Structure
+### Show File Structure
+
+Just type follow command to view the graphical file structure in terminal.
 
 ```bash
 $ yarn run tree
