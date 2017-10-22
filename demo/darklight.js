@@ -186,7 +186,7 @@ var Darklight = function () {
     value: function openBox(e, targetContent) {
       var target = e.target.dataset.darklight;
       var newURL = updateQueryStringParameter(document.URL, 'darklight', target);
-      history.pushState(target, null, newURL);
+      window.history.pushState(target, null, newURL);
       this.box.classList.add('is-active');
       this.box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
     }
@@ -201,7 +201,7 @@ var Darklight = function () {
           return content.classList.remove('is-active');
         });
         if (popHistory === true) {
-          history.go(-1);
+          window.history.go(-1);
         }
       }
     }
@@ -211,6 +211,7 @@ var Darklight = function () {
       var _this = this;
 
       // configs
+      /* eslint no-param-reassign:0 */
       config = Object.assign(CONFIG, config);
       this.box = query(config.box);
       this.btnOpens = queryAll(config.btnOpens);
@@ -267,8 +268,8 @@ var Darklight = function () {
       return this;
     }
   }], [{
-    key: 'noConflick',
-    value: function noConflick() {
+    key: 'noConflict',
+    value: function noConflict() {
       window.Darklight = OtherDarklight;
       return Darklight;
     }
@@ -278,7 +279,7 @@ var Darklight = function () {
 
 if (typeof exports === 'undefined' && typeof window.Darklight !== 'undefined') {
   console.log('Darklight already defined. Rename it as `OtherDarklight`');
-  OtherDarklight = window.Darklight;
+  window.OtherDarklight = window.Darklight;
   window.Darklight = Darklight;
 }
 

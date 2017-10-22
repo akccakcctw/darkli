@@ -23,7 +23,7 @@ class Darklight {
   openBox(e, targetContent) {
     const target = e.target.dataset.darklight;
     const newURL = updateQueryStringParameter(document.URL, 'darklight', target);
-    history.pushState(target, null, newURL);
+    window.history.pushState(target, null, newURL);
     this.box.classList.add('is-active');
     this.box.querySelector(`[data-darklight-content=${targetContent}]`).classList.add('is-active');
   }
@@ -33,13 +33,14 @@ class Darklight {
       this.box.classList.remove('is-active');
       this.box.querySelectorAll('.darklight-content').forEach(content => content.classList.remove('is-active'));
       if (popHistory === true) {
-        history.go(-1);
+        window.history.go(-1);
       }
     }
   }
 
   init(config) {
     // configs
+    /* eslint no-param-reassign:0 */
     config = Object.assign(CONFIG, config);
     this.box = query(config.box);
     this.btnOpens = queryAll(config.btnOpens);
@@ -88,7 +89,7 @@ class Darklight {
     }
     return this;
   }
-  static noConflick() {
+  static noConflict() {
     window.Darklight = OtherDarklight;
     return Darklight;
   }
@@ -97,7 +98,7 @@ class Darklight {
 if (typeof exports === 'undefined' &&
   typeof window.Darklight !== 'undefined') {
   console.log('Darklight already defined. Rename it as `OtherDarklight`');
-  OtherDarklight = window.Darklight;
+  window.OtherDarklight = window.Darklight;
   window.Darklight = Darklight;
 }
 
