@@ -1,25 +1,27 @@
 const babel = require('rollup-plugin-babel');
 
+// https://rollupjs.org/#javascript-api
 module.exports = {
-  entry: 'src/js/darklight.js',
-  targets: [
+  input: 'src/js/darklight.js',
+  output: [
     {
-      dest: 'dist/darklight.js',
+      file: 'dist/darklight.js',
+      format: 'umd',
     },
     {
-      dest: 'dist/darklight.common.js',
+      file: 'dist/darklight.common.js',
       format: 'cjs',
     },
     {
-      dest: 'dist/darklight.esm.js',
+      file: 'dist/darklight.esm.js',
       format: 'es',
     },
     {
-      dest: 'demo/darklight.js',
+      file: 'demo/darklight.js',
+      format: 'umd',
     },
   ],
-  format: 'umd',
-  moduleName: 'Darklight',
+  name: 'Darklight',
   plugins: [
     babel({
       exclude: '/node_modules/**',
