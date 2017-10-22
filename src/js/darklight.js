@@ -1,6 +1,7 @@
 import CONFIG from './config';
 import { openBox, closeBox } from './components/box';
 import { query, queryAll } from './components/query';
+import { getQueryStringParameter } from './components/utils';
 
 let OtherDarklight;
 class Darklight {
@@ -9,6 +10,7 @@ class Darklight {
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darklight/issues';
     this.license = 'WTFPL';
+    this.moduleName = 'darklight';
     this.init();
   }
 
@@ -33,6 +35,12 @@ class Darklight {
       Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
         this.openBox(btnOpen.dataset.darklight);
       }));
+
+      // open box if URL has query string
+      if (getQueryStringParameter(this.moduleName)) {
+        this.openBox(getQueryStringParameter(this.moduleName));
+      }
+
       this.btnClose.addEventListener('click', () => { this.closeBox(); });
 
       document.addEventListener('mouseup', (e) => {

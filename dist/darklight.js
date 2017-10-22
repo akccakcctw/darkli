@@ -20,6 +20,16 @@ function updateQueryStringParameter(uri, key, value) {
   return uri + separator + key + '=' + value;
 }
 
+function getQueryStringParameter(key) {
+  var url = window.location.href;
+  var name = key.replace(/[[\]]/g, '\\$&');
+  var re = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+  var results = re.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 function openBox(targetContent) {
   var newURL = updateQueryStringParameter(document.URL, 'darklight', targetContent);
   window.history.pushState(targetContent, null, newURL);
@@ -204,6 +214,7 @@ var Darklight = function () {
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darklight/issues';
     this.license = 'WTFPL';
+    this.moduleName = 'darklight';
     this.init();
   }
 
@@ -244,6 +255,12 @@ var Darklight = function () {
             _this.openBox(btnOpen.dataset.darklight);
           });
         });
+
+        // open box if URL has query string
+        if (getQueryStringParameter(this.moduleName)) {
+          this.openBox(getQueryStringParameter(this.moduleName));
+        }
+
         this.btnClose.addEventListener('click', function () {
           _this.closeBox();
         });

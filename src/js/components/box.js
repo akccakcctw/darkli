@@ -1,4 +1,4 @@
-import updateQueryStringParameter from './updateQueryStringParameter';
+import { updateQueryStringParameter } from './utils';
 
 export function openBox(targetContent) {
   const newURL = updateQueryStringParameter(document.URL, 'darklight', targetContent);
