@@ -7,6 +7,49 @@ var CONFIG = {
   btnClose: '.darklight .darklight-close'
 };
 
+function updateQueryStringParameter(uri, key, value) {
+  var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+  var separator = uri.indexOf('?') !== -1 ? '&' : '?';
+  if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + '=' + value + '$2');
+  }
+  return uri + separator + key + '=' + value;
+}
+
+function openBox(e, targetContent) {
+  var target = e.target.dataset.darklight;
+  var newURL = updateQueryStringParameter(document.URL, 'darklight', target);
+  window.history.pushState(target, null, newURL);
+  this.box.classList.add('is-active');
+  this.box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
+}
+
+function closeBox() {
+  var popHistory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+  if (this.box.classList.contains('is-active')) {
+    this.box.classList.remove('is-active');
+    this.box.querySelectorAll('.darklight-content').forEach(function (content) {
+      return content.classList.remove('is-active');
+    });
+    if (popHistory === true) {
+      window.history.go(-1);
+    }
+  }
+}
+
+function query(selectors) {
+  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+
+  return baseEl.querySelector(selectors);
+}
+
+function queryAll(selectors) {
+  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+
+  return baseEl.querySelectorAll(selectors);
+}
+
 var asyncGenerator = function () {
   function AwaitValue(value) {
     this.value = value;
@@ -148,22 +191,6 @@ var createClass = function () {
   };
 }();
 
-var query = function query(selectors) {
-  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-  return baseEl.querySelector(selectors);
-};
-var queryAll = function queryAll(selectors) {
-  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-  return baseEl.querySelectorAll(selectors);
-};
-var updateQueryStringParameter = function updateQueryStringParameter(uri, key, value) {
-  var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
-  var separator = uri.indexOf('?') !== -1 ? '&' : '?';
-  if (uri.match(re)) {
-    return uri.replace(re, '$1' + key + '=' + value + '$2');
-  }
-  return uri + separator + key + '=' + value;
-};
 var OtherDarklight = void 0;
 
 var Darklight = function () {
@@ -179,27 +206,21 @@ var Darklight = function () {
 
   createClass(Darklight, [{
     key: 'openBox',
-    value: function openBox(e, targetContent) {
-      var target = e.target.dataset.darklight;
-      var newURL = updateQueryStringParameter(document.URL, 'darklight', target);
-      window.history.pushState(target, null, newURL);
-      this.box.classList.add('is-active');
-      this.box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
+    value: function openBox$$1() {
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      openBox.apply(this, args);
     }
   }, {
     key: 'closeBox',
-    value: function closeBox() {
-      var popHistory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-      if (this.box.classList.contains('is-active')) {
-        this.box.classList.remove('is-active');
-        this.box.querySelectorAll('.darklight-content').forEach(function (content) {
-          return content.classList.remove('is-active');
-        });
-        if (popHistory === true) {
-          window.history.go(-1);
-        }
+    value: function closeBox$$1() {
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
       }
+
+      closeBox.apply(this, args);
     }
   }, {
     key: 'init',

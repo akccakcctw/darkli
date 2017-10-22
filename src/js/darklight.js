@@ -1,15 +1,7 @@
 import CONFIG from './config';
+import { openBox, closeBox } from './components/box';
+import { query, queryAll } from './components/query';
 
-const query = (selectors, baseEl = document) => baseEl.querySelector(selectors);
-const queryAll = (selectors, baseEl = document) => baseEl.querySelectorAll(selectors);
-const updateQueryStringParameter = (uri, key, value) => {
-  const re = new RegExp(`([?&])${key}=.*?(&|$)`, 'i');
-  const separator = uri.indexOf('?') !== -1 ? '&' : '?';
-  if (uri.match(re)) {
-    return uri.replace(re, `$1${key}=${value}$2`);
-  }
-  return `${uri + separator + key}=${value}`;
-};
 let OtherDarklight;
 class Darklight {
   constructor() {
@@ -20,22 +12,12 @@ class Darklight {
     this.init();
   }
 
-  openBox(e, targetContent) {
-    const target = e.target.dataset.darklight;
-    const newURL = updateQueryStringParameter(document.URL, 'darklight', target);
-    window.history.pushState(target, null, newURL);
-    this.box.classList.add('is-active');
-    this.box.querySelector(`[data-darklight-content=${targetContent}]`).classList.add('is-active');
+  openBox(...args) {
+    openBox.apply(this, args);
   }
 
-  closeBox(popHistory = true) {
-    if (this.box.classList.contains('is-active')) {
-      this.box.classList.remove('is-active');
-      this.box.querySelectorAll('.darklight-content').forEach(content => content.classList.remove('is-active'));
-      if (popHistory === true) {
-        window.history.go(-1);
-      }
-    }
+  closeBox(...args) {
+    closeBox.apply(this, args);
   }
 
   init(config) {
