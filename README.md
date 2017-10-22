@@ -10,6 +10,13 @@ Or using from CDN
   - [CSS](https://cdn.rawgit.com/akccakcctw/darklight/master/dist/darklight.min.css)
   - [JS](https://cdn.rawgit.com/akccakcctw/darklight/master/dist/darklight.min.js)
 
+## Method
+
+| Method                        | Description |
+| ----------------------------- | ----------- |
+| `Darklight.openBox(content)`  | open specific box |
+| `Darklight.closeBox()`        | close box |
+
 ## Development
 
 ### Prerequisites

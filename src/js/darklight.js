@@ -30,13 +30,13 @@ class Darklight {
 
     // default functions
     if (this.box !== null) {
-      Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', (e) => {
-        this.openBox(e, btnOpen.dataset.darklight);
+      Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
+        this.openBox(btnOpen.dataset.darklight);
       }));
       this.btnClose.addEventListener('click', () => { this.closeBox(); });
 
       document.addEventListener('mouseup', (e) => {
-        const content = document.querySelector('.darklight .darklight-content');
+        const content = query('.darklight .darklight-content');
         // click outer space to close darklight
         if (!e.target.matches('.darklight .darklight-content') && !content.contains(e.target)) {
           this.closeBox();
@@ -51,7 +51,7 @@ class Darklight {
       window.addEventListener('popstate', () => { this.closeBox(false); });
 
       // close icon
-      const closeIcon = document.querySelector('.darklight .darklight-icon use');
+      const closeIcon = query('.darklight .darklight-icon use');
       const closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
 
       const cW = document.body.clientWidth;

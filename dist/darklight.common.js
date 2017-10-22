@@ -16,10 +16,9 @@ function updateQueryStringParameter(uri, key, value) {
   return uri + separator + key + '=' + value;
 }
 
-function openBox(e, targetContent) {
-  var target = e.target.dataset.darklight;
-  var newURL = updateQueryStringParameter(document.URL, 'darklight', target);
-  window.history.pushState(target, null, newURL);
+function openBox(targetContent) {
+  var newURL = updateQueryStringParameter(document.URL, 'darklight', targetContent);
+  window.history.pushState(targetContent, null, newURL);
   this.box.classList.add('is-active');
   this.box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
 }
@@ -237,8 +236,8 @@ var Darklight = function () {
       // default functions
       if (this.box !== null) {
         Array.from(this.btnOpens).forEach(function (btnOpen) {
-          return btnOpen.addEventListener('click', function (e) {
-            _this.openBox(e, btnOpen.dataset.darklight);
+          return btnOpen.addEventListener('click', function () {
+            _this.openBox(btnOpen.dataset.darklight);
           });
         });
         this.btnClose.addEventListener('click', function () {
@@ -246,7 +245,7 @@ var Darklight = function () {
         });
 
         document.addEventListener('mouseup', function (e) {
-          var content = document.querySelector('.darklight .darklight-content');
+          var content = query('.darklight .darklight-content');
           // click outer space to close darklight
           if (!e.target.matches('.darklight .darklight-content') && !content.contains(e.target)) {
             _this.closeBox();
@@ -264,7 +263,7 @@ var Darklight = function () {
         });
 
         // close icon
-        var closeIcon = document.querySelector('.darklight .darklight-icon use');
+        var closeIcon = query('.darklight .darklight-icon use');
         var closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
 
         var cW = document.body.clientWidth;
