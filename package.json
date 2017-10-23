@@ -1,6 +1,6 @@
 {
   "name": "darkli",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Darkli: small and clean lightbox script",
   "main": "dist/js/darkli.js",
   "author": "Rex Tsou <akccakccwww@gmail.com>",
