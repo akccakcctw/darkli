@@ -4,7 +4,7 @@ import { query, queryAll } from './components/query';
 import { getQueryStringParameter } from './components/utils';
 
 let Otherdarkli;
-class darkli {
+class Darkli {
   constructor() {
     this.version = '0.1.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
@@ -81,7 +81,7 @@ class darkli {
   }
   static noConflict() {
     window.darkli = Otherdarkli;
-    return darkli;
+    return Darkli;
   }
 }
 
@@ -89,7 +89,7 @@ if (typeof exports === 'undefined' &&
   typeof window.darkli !== 'undefined') {
   console.log('darkli already defined. Rename it as `Otherdarkli`');
   window.Otherdarkli = window.darkli;
-  window.darkli = darkli;
+  window.darkli = Darkli;
 }
 
-export default darkli;
+export default Darkli;

@@ -202,9 +202,9 @@ var createClass = function () {
 
 var Otherdarkli = void 0;
 
-var darkli = function () {
-  function darkli() {
-    classCallCheck(this, darkli);
+var Darkli = function () {
+  function Darkli() {
+    classCallCheck(this, Darkli);
 
     this.version = '0.1.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
@@ -214,7 +214,7 @@ var darkli = function () {
     this.init();
   }
 
-  createClass(darkli, [{
+  createClass(Darkli, [{
     key: 'openBox',
     value: function openBox$$1() {
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -304,16 +304,16 @@ var darkli = function () {
     key: 'noConflict',
     value: function noConflict() {
       window.darkli = Otherdarkli;
-      return darkli;
+      return Darkli;
     }
   }]);
-  return darkli;
+  return Darkli;
 }();
 
 if (typeof exports === 'undefined' && typeof window.darkli !== 'undefined') {
   console.log('darkli already defined. Rename it as `Otherdarkli`');
   window.Otherdarkli = window.darkli;
-  window.darkli = darkli;
+  window.darkli = Darkli;
 }
 
-module.exports = darkli;
+module.exports = Darkli;
