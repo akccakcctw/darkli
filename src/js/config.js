@@ -1,6 +1,6 @@
 export default {
-  box: '.darklight',
-  contents: '.darklight-content',
-  btnOpens: '[data-darklight]',
-  btnClose: '.darklight .darklight-close',
+  box: '.darkli',
+  contents: '.darkli-content',
+  btnOpens: '[data-darkli]',
+  btnClose: '.darkli .darkli-close',
 };

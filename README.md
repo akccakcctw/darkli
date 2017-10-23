@@ -1,21 +1,21 @@
-# Darklight: small and clean lightbox script
+# Darkli: small and clean lightbox script
 
 ## Usage
 
 Directly download the files below
-  - [CSS](https://raw.githubusercontent.com/akccakcctw/darklight/master/dist/darklight.min.css)
-  - [JS](https://raw.githubusercontent.com/akccakcctw/darklight/master/dist/darklight.min.js)
+  - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css)
+  - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js)
 
 Or using from CDN
-  - [CSS](https://cdn.rawgit.com/akccakcctw/darklight/master/dist/darklight.min.css)
-  - [JS](https://cdn.rawgit.com/akccakcctw/darklight/master/dist/darklight.min.js)
+  - [CSS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.css)
+  - [JS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.js)
 
 ## Method
 
 | Method                        | Description |
 | ----------------------------- | ----------- |
-| `Darklight.openBox(content)`  | open specific box |
-| `Darklight.closeBox()`        | close box |
+| `darkli.openBox(content)`  | open specific box |
+| `darkli.closeBox()`        | close box |
 
 ## Development
 
@@ -63,4 +63,4 @@ $ yarn run tree
 ```
 
 ## License
-You just DO WHAT THE FUCK YOU WANT TO. [WTFPL](https://github.com/akccakcctw/darklight/blob/master/LICENSE)
+You just DO WHAT THE FUCK YOU WANT TO. [WTFPL](https://github.com/akccakcctw/darkli/blob/master/LICENSE)

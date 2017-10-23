@@ -1,21 +1,20 @@
 {
-  "name": "darklight",
-  "version": "0.1.0",
-  "description": "Darklight: small and clean lightbox script",
-  "main": "dist/js/darklight.js",
+  "name": "darkli",
+  "version": "0.3.0",
+  "description": "Darkli: small and clean lightbox script",
+  "main": "dist/js/darkli.js",
   "author": "Rex Tsou <akccakccwww@gmail.com>",
   "keywords": [
-    "darklight",
     "lightbox",
     "overlay"
   ],
   "license": "WTFPL",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akccakcctw/darklight.git"
+    "url": "https://github.com/akccakcctw/darkli.git"
   },
   "bugs": {
-    "url": "https://github.com/akccakcctw/darklight/issues"
+    "url": "https://github.com/akccakcctw/darkli/issues"
   },
   "devDependencies": {
     "archy": "^1.0.0",
@@ -45,7 +44,7 @@
     "gulp": "gulp",
     "tree": "node bin/tree.js",
     "build:js": "rollup -c",
-    "compress:js": "uglifyjs dist/darklight.js -o dist/darklight.min.js -c -m --comments /^!/",
+    "compress:js": "uglifyjs dist/darkli.js -o dist/darkli.min.js -c -m --comments /^!/",
     "watch:js": "rollup -c -w -m"
   }
 }

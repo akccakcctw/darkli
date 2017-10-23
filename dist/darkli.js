@@ -1,14 +1,14 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Darklight = factory());
+	(global.Darkli = factory());
 }(this, (function () { 'use strict';
 
 var CONFIG = {
-  box: '.darklight',
-  contents: '.darklight-content',
-  btnOpens: '[data-darklight]',
-  btnClose: '.darklight .darklight-close'
+  box: '.darkli',
+  contents: '.darkli-content',
+  btnOpens: '[data-darkli]',
+  btnClose: '.darkli .darkli-close'
 };
 
 function updateQueryStringParameter(uri, key, value) {
@@ -31,10 +31,10 @@ function getQueryStringParameter(key) {
 }
 
 function openBox(targetContent) {
-  var newURL = updateQueryStringParameter(document.URL, 'darklight', targetContent);
+  var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
   window.history.pushState(targetContent, null, newURL);
   this.box.classList.add('is-active');
-  this.box.querySelector('[data-darklight-content=' + targetContent + ']').classList.add('is-active');
+  this.box.querySelector('[data-darkli-content=' + targetContent + ']').classList.add('is-active');
 }
 
 function closeBox() {
@@ -42,7 +42,7 @@ function closeBox() {
 
   if (this.box.classList.contains('is-active')) {
     this.box.classList.remove('is-active');
-    this.box.querySelectorAll('.darklight-content').forEach(function (content) {
+    this.box.querySelectorAll('.darkli-content').forEach(function (content) {
       return content.classList.remove('is-active');
     });
     if (popHistory === true) {
@@ -204,21 +204,21 @@ var createClass = function () {
   };
 }();
 
-var OtherDarklight = void 0;
+var Otherdarkli = void 0;
 
-var Darklight = function () {
-  function Darklight() {
-    classCallCheck(this, Darklight);
+var darkli = function () {
+  function darkli() {
+    classCallCheck(this, darkli);
 
     this.version = '0.1.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
-    this.bugs = 'https://github.com/akccakcctw/darklight/issues';
+    this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
-    this.moduleName = 'darklight';
+    this.moduleName = 'darkli';
     this.init();
   }
 
-  createClass(Darklight, [{
+  createClass(darkli, [{
     key: 'openBox',
     value: function openBox$$1() {
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
@@ -252,7 +252,7 @@ var Darklight = function () {
       if (this.box !== null) {
         Array.from(this.btnOpens).forEach(function (btnOpen) {
           return btnOpen.addEventListener('click', function () {
-            _this.openBox(btnOpen.dataset.darklight);
+            _this.openBox(btnOpen.dataset.darkli);
           });
         });
 
@@ -266,9 +266,9 @@ var Darklight = function () {
         });
 
         document.addEventListener('mouseup', function (e) {
-          var content = query('.darklight .darklight-content');
-          // click outer space to close darklight
-          if (!e.target.matches('.darklight .darklight-content') && !content.contains(e.target)) {
+          var content = query('.darkli .darkli-content');
+          // click outer space to close darkli
+          if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
             _this.closeBox();
           }
         });
@@ -284,7 +284,7 @@ var Darklight = function () {
         });
 
         // close icon
-        var closeIcon = query('.darklight .darklight-icon use');
+        var closeIcon = query('.darkli .darkli-icon use');
         var closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
 
         var cW = document.body.clientWidth;
@@ -307,19 +307,19 @@ var Darklight = function () {
   }], [{
     key: 'noConflict',
     value: function noConflict() {
-      window.Darklight = OtherDarklight;
-      return Darklight;
+      window.darkli = Otherdarkli;
+      return darkli;
     }
   }]);
-  return Darklight;
+  return darkli;
 }();
 
-if (typeof exports === 'undefined' && typeof window.Darklight !== 'undefined') {
-  console.log('Darklight already defined. Rename it as `OtherDarklight`');
-  window.OtherDarklight = window.Darklight;
-  window.Darklight = Darklight;
+if (typeof exports === 'undefined' && typeof window.darkli !== 'undefined') {
+  console.log('darkli already defined. Rename it as `Otherdarkli`');
+  window.Otherdarkli = window.darkli;
+  window.darkli = darkli;
 }
 
-return Darklight;
+return darkli;
 
 })));

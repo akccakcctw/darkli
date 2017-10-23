@@ -3,14 +3,14 @@ import { openBox, closeBox } from './components/box';
 import { query, queryAll } from './components/query';
 import { getQueryStringParameter } from './components/utils';
 
-let OtherDarklight;
-class Darklight {
+let Otherdarkli;
+class darkli {
   constructor() {
     this.version = '0.1.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
-    this.bugs = 'https://github.com/akccakcctw/darklight/issues';
+    this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
-    this.moduleName = 'darklight';
+    this.moduleName = 'darkli';
     this.init();
   }
 
@@ -33,7 +33,7 @@ class Darklight {
     // default functions
     if (this.box !== null) {
       Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
-        this.openBox(btnOpen.dataset.darklight);
+        this.openBox(btnOpen.dataset.darkli);
       }));
 
       // open box if URL has query string
@@ -44,9 +44,9 @@ class Darklight {
       this.btnClose.addEventListener('click', () => { this.closeBox(); });
 
       document.addEventListener('mouseup', (e) => {
-        const content = query('.darklight .darklight-content');
-        // click outer space to close darklight
-        if (!e.target.matches('.darklight .darklight-content') && !content.contains(e.target)) {
+        const content = query('.darkli .darkli-content');
+        // click outer space to close darkli
+        if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
           this.closeBox();
         }
       });
@@ -59,7 +59,7 @@ class Darklight {
       window.addEventListener('popstate', () => { this.closeBox(false); });
 
       // close icon
-      const closeIcon = query('.darklight .darklight-icon use');
+      const closeIcon = query('.darkli .darkli-icon use');
       const closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
 
       const cW = document.body.clientWidth;
@@ -80,16 +80,16 @@ class Darklight {
     return this;
   }
   static noConflict() {
-    window.Darklight = OtherDarklight;
-    return Darklight;
+    window.darkli = Otherdarkli;
+    return darkli;
   }
 }
 
 if (typeof exports === 'undefined' &&
-  typeof window.Darklight !== 'undefined') {
-  console.log('Darklight already defined. Rename it as `OtherDarklight`');
-  window.OtherDarklight = window.Darklight;
-  window.Darklight = Darklight;
+  typeof window.darkli !== 'undefined') {
+  console.log('darkli already defined. Rename it as `Otherdarkli`');
+  window.Otherdarkli = window.darkli;
+  window.darkli = darkli;
 }
 
-export default Darklight;
+export default darkli;

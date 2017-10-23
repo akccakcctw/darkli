@@ -1,5 +1,5 @@
 @import 'mixin/_breakpoint';
-.darklight {
+.darkli {
     * {
         box-sizing: border-box;
     }
@@ -19,7 +19,7 @@
         visibility: visible;
         opacity: 1
     }
-    .darklight-close {
+    .darkli-close {
         position: fixed;
         z-index: 100;
         background-color: transparent;
@@ -36,7 +36,7 @@
         &:hover {
             opacity: 1;
         }
-        .darklight-icon {
+        .darkli-icon {
             width: 20px;
             height: 20px;
             filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .5));
@@ -46,7 +46,7 @@
             }
         }
     }
-    .darklight-content {
+    .darkli-content {
         display: none;
         position: absolute;
         background: #fff;

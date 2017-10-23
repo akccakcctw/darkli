@@ -1,4 +1,4 @@
-.darklight {
+.darkli {
   position: fixed;
   opacity: 0;
   visibility: hidden;
@@ -12,13 +12,13 @@
   background: rgba(30, 30, 30, 0.8);
   z-index: 99;
   overflow: auto; }
-  .darklight * {
+  .darkli * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box; }
-  .darklight.is-active {
+  .darkli.is-active {
     visibility: visible;
     opacity: 1; }
-  .darklight .darklight-close {
+  .darkli .darkli-close {
     position: fixed;
     z-index: 100;
     background-color: transparent;
@@ -30,21 +30,21 @@
     -webkit-transition: .1s ease-in-out;
     transition: .1s ease-in-out; }
     @media (min-width: 600px) {
-      .darklight .darklight-close {
+      .darkli .darkli-close {
         top: 30px;
         right: 20px; } }
-    .darklight .darklight-close:hover {
+    .darkli .darkli-close:hover {
       opacity: 1; }
-    .darklight .darklight-close .darklight-icon {
+    .darkli .darkli-close .darkli-icon {
       width: 20px;
       height: 20px;
       -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
               filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5)); }
       @media (min-width: 600px) {
-        .darklight .darklight-close .darklight-icon {
+        .darkli .darkli-close .darkli-icon {
           width: 25px;
           height: 25px; } }
-  .darklight .darklight-content {
+  .darkli .darkli-content {
     display: none;
     position: absolute;
     background: #fff;
@@ -59,16 +59,16 @@
     padding: 16px;
     padding-top: 40px; }
     @media (min-width: 600px) {
-      .darklight .darklight-content {
+      .darkli .darkli-content {
         width: 80%;
         height: auto;
         min-height: 85vh;
         margin: 32px auto;
         padding: 24px 32px 16px;
         border-radius: 3px; } }
-    .darklight .darklight-content.is-active {
+    .darkli .darkli-content.is-active {
       display: initial; }
-  .darklight img {
+  .darkli img {
     max-width: 100%; }
 
 .no-scroll {
