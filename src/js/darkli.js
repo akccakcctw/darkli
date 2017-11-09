@@ -1,7 +1,7 @@
 import CONFIG from './config';
 import { openBox, closeBox } from './components/box';
 import { query, queryAll } from './components/query';
-import { getQueryStringParameter } from './components/utils';
+import * as utils from './components/utils';
 
 let Otherdarkli;
 class Darkli {
@@ -37,9 +37,18 @@ class Darkli {
       }));
 
       // open box if URL has query string
-      if (getQueryStringParameter(this.moduleName)) {
-        this.openBox(getQueryStringParameter(this.moduleName));
+      if (utils.getQueryStringParameter(this.moduleName)) {
+        this.openBox(utils.getQueryStringParameter(this.moduleName));
       }
+
+      // create default close button icon(svg)
+      const createDefaultCloseIcon = () => {
+        const icon = utils.createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
+        icon.classList.add('darkli-icon');
+        icon.setAttribute('viewBox', '0 0 612 612');
+        this.btnClose.appendChild(icon);
+      };
+      createDefaultCloseIcon();
 
       this.btnClose.addEventListener('click', () => { this.closeBox(); });
 
@@ -57,25 +66,6 @@ class Darkli {
         }
       });
       window.addEventListener('popstate', () => { this.closeBox(false); });
-
-      // close icon
-      const closeIcon = query('.darkli .darkli-icon use');
-      const closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
-
-      const cW = document.body.clientWidth;
-      if (cW <= 767) {
-        const newCloseIconLink = `${closeIconLink}#close-inverse`;
-        closeIcon.setAttribute('xlink:href', newCloseIconLink);
-      }
-      window.addEventListener('resize', () => {
-        if (cW <= 767) {
-          const newCloseIconLink = `${closeIconLink}#close-inverse`;
-          closeIcon.setAttribute('xlink:href', newCloseIconLink);
-        } else if (cW > 767) {
-          const newCloseIconLink = `${closeIconLink}#close`;
-          closeIcon.setAttribute('xlink:href', newCloseIconLink);
-        }
-      });
     }
     return this;
   }

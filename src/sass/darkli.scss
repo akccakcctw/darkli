@@ -1,82 +1,83 @@
 @import 'mixin/_breakpoint';
 .darkli {
-    * {
-        box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  left: 0;
+  top: 0;
+  transition: 0.3s ease-in-out;
+  background: rgba(30, 30, 30, 0.8);
+  z-index: 99;
+  overflow: auto;
+  &.is-active {
+    visibility: visible;
+    opacity: 1
+  }
+  .darkli-close {
     position: fixed;
-    opacity: 0;
-    visibility: hidden;
-    width: 100%;
-    height: auto;
-    min-height: 100vh;
+    z-index: 100;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    top: 5px;
+    right: 5px;
+    opacity: .5;
+    transition: .1s ease-in-out;
+    @include for-tablet-portrait-up {
+      top: 30px;
+      right: 20px;
+    }
+    &:hover {
+      opacity: 1;
+    }
+    .darkli-icon {
+      width: 20px;
+      height: 20px;
+      filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .5));
+      @include for-tablet-portrait-up {
+        width: 25px;
+        height: 25px;
+        fill: #FFF;
+      }
+    }
+  }
+  .darkli-content {
+    display: none;
+    position: absolute;
+    background: #fff;
+    text-align: justify;
+    overflow-x: hidden;
+    overflow-y: auto;
     left: 0;
-    top: 0;
-    transition: 0.3s ease-in-out;
-    background: rgba(30, 30, 30, 0.8);
-    z-index: 99;
-    overflow: auto;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 16px;
+    padding-top: 40px;
+    @include for-tablet-portrait-up {
+      width: 80%;
+      height: auto;
+      min-height: 85vh;
+      margin: 32px auto;
+      padding: 24px 32px 16px;
+      border-radius: 3px;
+    }
     &.is-active {
-        visibility: visible;
-        opacity: 1
+      display: initial;
     }
-    .darkli-close {
-        position: fixed;
-        z-index: 100;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        top: 5px;
-        right: 5px;
-        opacity: .5;
-        transition: .1s ease-in-out;
-        @include for-tablet-portrait-up {
-            top: 30px;
-            right: 20px;
-        }
-        &:hover {
-            opacity: 1;
-        }
-        .darkli-icon {
-            width: 20px;
-            height: 20px;
-            filter: drop-shadow( 1px 1px 1px rgba(0, 0, 0, .5));
-            @include for-tablet-portrait-up {
-                width: 25px;
-                height: 25px;
-            }
-        }
-    }
-    .darkli-content {
-        display: none;
-        position: absolute;
-        background: #fff;
-        text-align: justify;
-        overflow-x: hidden;
-        overflow-y: auto;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        margin: 0;
-        padding: 16px;
-        padding-top: 40px;
-        @include for-tablet-portrait-up {
-            width: 80%;
-            height: auto;
-            min-height: 85vh;
-            margin: 32px auto;
-            padding: 24px 32px 16px;
-            border-radius: 3px;
-        }
-        &.is-active {
-            display: initial;
-        }
-    }
-    img {
-        max-width: 100%;
-    }
+  }
+  img {
+    max-width: 100%;
+  }
 }
 
 .no-scroll {
-    overflow: hidden;
+  overflow: hidden;
 }

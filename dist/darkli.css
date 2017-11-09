@@ -43,7 +43,8 @@
       @media (min-width: 600px) {
         .darkli .darkli-close .darkli-icon {
           width: 25px;
-          height: 25px; } }
+          height: 25px;
+          fill: #FFF; } }
   .darkli .darkli-content {
     display: none;
     position: absolute;

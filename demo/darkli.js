@@ -30,6 +30,17 @@ function getQueryStringParameter(key) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function createSVG(tag, attrs) {
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  var svgNS = svg.namespaceURI;
+  var el = document.createElementNS(svgNS, tag);
+  Object.keys(attrs).forEach(function (k) {
+    el.setAttribute(k, attrs[k]);
+  });
+  svg.appendChild(el);
+  return svg;
+}
+
 function openBox(targetContent) {
   var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
   window.history.pushState(targetContent, null, newURL);
@@ -261,6 +272,15 @@ var Darkli = function () {
           this.openBox(getQueryStringParameter(this.moduleName));
         }
 
+        // create default close button icon(svg)
+        var createDefaultCloseIcon = function createDefaultCloseIcon() {
+          var icon = createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
+          icon.classList.add('darkli-icon');
+          icon.setAttribute('viewBox', '0 0 612 612');
+          _this.btnClose.appendChild(icon);
+        };
+        createDefaultCloseIcon();
+
         this.btnClose.addEventListener('click', function () {
           _this.closeBox();
         });
@@ -281,25 +301,6 @@ var Darkli = function () {
         });
         window.addEventListener('popstate', function () {
           _this.closeBox(false);
-        });
-
-        // close icon
-        var closeIcon = query('.darkli .darkli-icon use');
-        var closeIconLink = closeIcon.getAttribute('xlink:href').replace('#close', '');
-
-        var cW = document.body.clientWidth;
-        if (cW <= 767) {
-          var newCloseIconLink = closeIconLink + '#close-inverse';
-          closeIcon.setAttribute('xlink:href', newCloseIconLink);
-        }
-        window.addEventListener('resize', function () {
-          if (cW <= 767) {
-            var _newCloseIconLink = closeIconLink + '#close-inverse';
-            closeIcon.setAttribute('xlink:href', _newCloseIconLink);
-          } else if (cW > 767) {
-            var _newCloseIconLink2 = closeIconLink + '#close';
-            closeIcon.setAttribute('xlink:href', _newCloseIconLink2);
-          }
         });
       }
       return this;
