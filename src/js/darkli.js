@@ -1,12 +1,11 @@
 import CONFIG from './config';
-import { openBox, closeBox } from './components/box';
-import { query, queryAll } from './components/query';
+import * as box from './components/box';
 import * as utils from './components/utils';
 
 let Otherdarkli;
 class Darkli {
   constructor() {
-    this.version = '0.1.0';
+    this.version = '0.4.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
@@ -14,31 +13,35 @@ class Darkli {
     this.init();
   }
 
-  openBox(...args) {
-    openBox.apply(this, args);
+  open(...args) {
+    box.open.apply(this, args);
   }
 
-  closeBox(...args) {
-    closeBox.apply(this, args);
+  close(...args) {
+    box.close.apply(this, args);
+  }
+
+  create(...args) {
+    box.create.apply(this, args);
   }
 
   init(config) {
     // configs
     /* eslint no-param-reassign:0 */
     config = Object.assign(CONFIG, config);
-    this.box = query(config.box);
-    this.btnOpens = queryAll(config.btnOpens);
-    this.btnClose = query(config.btnClose);
+    this.box = utils.query(config.box);
+    this.btnOpens = utils.queryAll(config.btnOpens);
+    this.btnClose = utils.query(config.btnClose);
 
     // default functions
     if (this.box !== null) {
       Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
-        this.openBox(btnOpen.dataset.darkli);
+        this.open(btnOpen.dataset.darkli);
       }));
 
       // open box if URL has query string
       if (utils.getQueryStringParameter(this.moduleName)) {
-        this.openBox(utils.getQueryStringParameter(this.moduleName));
+        this.open(utils.getQueryStringParameter(this.moduleName));
       }
 
       // create default close button icon(svg)
@@ -50,22 +53,22 @@ class Darkli {
       };
       createDefaultCloseIcon();
 
-      this.btnClose.addEventListener('click', () => { this.closeBox(); });
+      this.btnClose.addEventListener('click', () => { this.close(); });
 
       document.addEventListener('mouseup', (e) => {
-        const content = query('.darkli .darkli-content');
+        const content = utils.query('.darkli .darkli-content');
         // click outer space to close darkli
         if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
-          this.closeBox();
+          this.close();
         }
       });
 
       document.addEventListener('keyup', (e) => {
         if (e.keyCode === 27 || e.keyCode === 8) { // 27(esc), 8(backspace)
-          this.closeBox();
+          this.close();
         }
       });
-      window.addEventListener('popstate', () => { this.closeBox(false); });
+      window.addEventListener('popstate', () => { this.close(false); });
     }
     return this;
   }

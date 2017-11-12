@@ -91,10 +91,16 @@
     You can open/close box with js directly, just try to type following command in your console.
     <pre><code class="language-javascript">
 // open `data-darkli-content="c1"`
-darkli.openBox('c1');
+darkli.open('c1');
 
 // close
-darkli.closeBox();
+darkli.close();
+
+// create
+darkli.create({content: `
+  &lt;p class="title"&gt;Title&lt;/p&gt;
+  &lt;p&gt;content&lt;/p&gt;
+`});
     </code></pre>
     <h3>Documentation</h3>
     Please check

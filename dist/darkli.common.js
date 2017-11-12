@@ -37,14 +37,26 @@ function createSVG(tag, attrs) {
   return svg;
 }
 
-function openBox(targetContent) {
+function query(selectors) {
+  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+
+  return baseEl.querySelector(selectors);
+}
+
+function queryAll(selectors) {
+  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+
+  return baseEl.querySelectorAll(selectors);
+}
+
+function open(targetContent) {
   var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
   window.history.pushState(targetContent, null, newURL);
   this.box.classList.add('is-active');
   this.box.querySelector('[data-darkli-content=' + targetContent + ']').classList.add('is-active');
 }
 
-function closeBox() {
+function close() {
   var popHistory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
   if (this.box.classList.contains('is-active')) {
@@ -58,16 +70,19 @@ function closeBox() {
   }
 }
 
-function query(selectors) {
-  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+function create() {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref$box = _ref.box,
+      box = _ref$box === undefined ? this.box : _ref$box,
+      content = _ref.content;
 
-  return baseEl.querySelector(selectors);
-}
-
-function queryAll(selectors) {
-  var baseEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-
-  return baseEl.querySelectorAll(selectors);
+  var hashString = (+new Date()).toString(36);
+  var el = document.createElement('div');
+  el.classList.add('darkli-content');
+  el.setAttribute('data-darkli-content', hashString);
+  el.innerHTML = content;
+  box.appendChild(el);
+  this.open(hashString);
 }
 
 var classCallCheck = function (instance, Constructor) {
@@ -100,7 +115,7 @@ var Darkli = function () {
   function Darkli() {
     classCallCheck(this, Darkli);
 
-    this.version = '0.1.0';
+    this.version = '0.4.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
@@ -109,22 +124,31 @@ var Darkli = function () {
   }
 
   createClass(Darkli, [{
-    key: 'openBox',
-    value: function openBox$$1() {
+    key: 'open',
+    value: function open$$1() {
       for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
 
-      openBox.apply(this, args);
+      open.apply(this, args);
     }
   }, {
-    key: 'closeBox',
-    value: function closeBox$$1() {
+    key: 'close',
+    value: function close$$1() {
       for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         args[_key2] = arguments[_key2];
       }
 
-      closeBox.apply(this, args);
+      close.apply(this, args);
+    }
+  }, {
+    key: 'create',
+    value: function create$$1() {
+      for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+        args[_key3] = arguments[_key3];
+      }
+
+      create.apply(this, args);
     }
   }, {
     key: 'init',
@@ -142,13 +166,13 @@ var Darkli = function () {
       if (this.box !== null) {
         Array.from(this.btnOpens).forEach(function (btnOpen) {
           return btnOpen.addEventListener('click', function () {
-            _this.openBox(btnOpen.dataset.darkli);
+            _this.open(btnOpen.dataset.darkli);
           });
         });
 
         // open box if URL has query string
         if (getQueryStringParameter(this.moduleName)) {
-          this.openBox(getQueryStringParameter(this.moduleName));
+          this.open(getQueryStringParameter(this.moduleName));
         }
 
         // create default close button icon(svg)
@@ -161,25 +185,25 @@ var Darkli = function () {
         createDefaultCloseIcon();
 
         this.btnClose.addEventListener('click', function () {
-          _this.closeBox();
+          _this.close();
         });
 
         document.addEventListener('mouseup', function (e) {
           var content = query('.darkli .darkli-content');
           // click outer space to close darkli
           if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
-            _this.closeBox();
+            _this.close();
           }
         });
 
         document.addEventListener('keyup', function (e) {
           if (e.keyCode === 27 || e.keyCode === 8) {
             // 27(esc), 8(backspace)
-            _this.closeBox();
+            _this.close();
           }
         });
         window.addEventListener('popstate', function () {
-          _this.closeBox(false);
+          _this.close(false);
         });
       }
       return this;

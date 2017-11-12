@@ -27,3 +27,11 @@ export function createSVG(tag, attrs) {
   svg.appendChild(el);
   return svg;
 }
+
+export function query(selectors, baseEl = document) {
+  return baseEl.querySelector(selectors);
+}
+
+export function queryAll(selectors, baseEl = document) {
+  return baseEl.querySelectorAll(selectors);
+}

@@ -14,8 +14,9 @@ Or using from CDN
 
 | Method                        | Description |
 | ----------------------------- | ----------- |
-| `darkli.openBox(content)`  | open specific box |
-| `darkli.closeBox()`        | close box |
+| `darkli.open(content)`          | open specific box |
+| `darkli.close()`                | close box |
+| `darkli.create({box, content})` | create box |
 
 ## Development
 
