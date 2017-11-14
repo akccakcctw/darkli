@@ -5,7 +5,7 @@ import * as utils from './components/utils';
 let Otherdarkli;
 class Darkli {
   constructor() {
-    this.version = '0.4.0';
+    this.version = '0.4.1';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
