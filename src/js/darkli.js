@@ -25,6 +25,10 @@ class Darkli {
     box.create.apply(this, args);
   }
 
+  external(...args) {
+    box.external.apply(this, args);
+  }
+
   init(config) {
     // configs
     const cfg = Object.assign(CONFIG, config);
@@ -36,8 +40,12 @@ class Darkli {
 
     // default functions
     if (this.config.box !== null) {
-      Array.from(this.config.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
-        this.open(btnOpen.dataset.darkli);
+      Array.from(this.config.btnOpens).forEach(btn => btn.addEventListener('click', () => {
+        if (!btn.dataset.darkli) {
+          this.external(btn.getAttribute('href'));
+          return;
+        }
+        this.open(btn.dataset.darkli);
       }));
 
       // open box if URL has query string

@@ -60,7 +60,10 @@ function close() {
   if (this.config.box.classList.contains('is-active')) {
     this.config.box.classList.remove('is-active');
     this.config.box.querySelectorAll('.darkli-content').forEach(function (content) {
-      return content.classList.remove('is-active');
+      if (content.classList.contains('auto-destroy')) {
+        content.parentNode.removeChild(content);
+      }
+      content.classList.remove('is-active');
     });
     if (popHistory === true) {
       window.history.go(-1);
@@ -72,15 +75,38 @@ function create() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$box = _ref.box,
       box = _ref$box === undefined ? this.config.box : _ref$box,
+      _ref$isExternal = _ref.isExternal,
+      isExternal = _ref$isExternal === undefined ? false : _ref$isExternal,
+      _ref$autoDestroy = _ref.autoDestroy,
+      autoDestroy = _ref$autoDestroy === undefined ? false : _ref$autoDestroy,
       content = _ref.content;
 
   var hashString = (+new Date()).toString(36);
   var el = document.createElement('div');
   el.classList.add('darkli-content');
   el.setAttribute('data-darkli-content', hashString);
+  if (isExternal) {
+    el.classList.add('is-external');
+  }
+  if (autoDestroy) {
+    el.classList.add('auto-destroy');
+  }
   el.innerHTML = content;
   box.appendChild(el);
   this.open(hashString);
+}
+
+
+
+var youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})(.*)?/i;
+var youtubeHandler = function youtubeHandler(url) {
+  return '\n  <div class="darkli-iframe-container">\n    <iframe frameborder="0" src="' + url + '" allowfullscreen></iframe>\n  </div>\n';
+};
+
+function external(url) {
+  if (youtubeRegex.exec(url)) {
+    this.create({ content: youtubeHandler(url), isExternal: true, autoDestroy: true });
+  }
 }
 
 var classCallCheck = function (instance, Constructor) {
@@ -149,6 +175,15 @@ var Darkli = function () {
       create.apply(this, args);
     }
   }, {
+    key: 'external',
+    value: function external$$1() {
+      for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+        args[_key4] = arguments[_key4];
+      }
+
+      external.apply(this, args);
+    }
+  }, {
     key: 'init',
     value: function init(config) {
       var _this = this;
@@ -163,9 +198,13 @@ var Darkli = function () {
 
       // default functions
       if (this.config.box !== null) {
-        Array.from(this.config.btnOpens).forEach(function (btnOpen) {
-          return btnOpen.addEventListener('click', function () {
-            _this.open(btnOpen.dataset.darkli);
+        Array.from(this.config.btnOpens).forEach(function (btn) {
+          return btn.addEventListener('click', function () {
+            if (!btn.dataset.darkli) {
+              _this.external(btn.getAttribute('href'));
+              return;
+            }
+            _this.open(btn.dataset.darkli);
           });
         });
 
