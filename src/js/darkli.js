@@ -27,15 +27,16 @@ class Darkli {
 
   init(config) {
     // configs
-    /* eslint no-param-reassign:0 */
-    config = Object.assign(CONFIG, config);
-    this.box = utils.query(config.box);
-    this.btnOpens = utils.queryAll(config.btnOpens);
-    this.btnClose = utils.query(config.btnClose);
+    const cfg = Object.assign(CONFIG, config);
+    this.config = {
+      box: utils.query(cfg.box),
+      btnOpens: utils.queryAll(cfg.btnOpens),
+      btnClose: utils.query(cfg.btnClose),
+    };
 
     // default functions
-    if (this.box !== null) {
-      Array.from(this.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
+    if (this.config.box !== null) {
+      Array.from(this.config.btnOpens).forEach(btnOpen => btnOpen.addEventListener('click', () => {
         this.open(btnOpen.dataset.darkli);
       }));
 
@@ -49,11 +50,11 @@ class Darkli {
         const icon = utils.createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
         icon.classList.add('darkli-icon');
         icon.setAttribute('viewBox', '0 0 612 612');
-        this.btnClose.appendChild(icon);
+        this.config.btnClose.appendChild(icon);
       };
       createDefaultCloseIcon();
 
-      this.btnClose.addEventListener('click', () => { this.close(); });
+      this.config.btnClose.addEventListener('click', () => { this.close(); });
 
       document.addEventListener('mouseup', (e) => {
         const content = utils.query('.darkli .darkli-content');
