@@ -1,10 +1,18 @@
-# Darkli: small and clean lightbox script
+# Darkli
+
+Small and clean lightbox script
+
+![LICENSE](https://img.shields.io/github/license/akccakcctw/darkli.svg)
+![downloads_npm](https://img.shields.io/npm/dt/darkli.svg)
+
+## Demo
+[https://akccakcctw.github.io/darkli/demo/](https://akccakcctw.github.io/darkli/demo/)
 
 ## Usage
 
 Directly download the files below
-  - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css)
-  - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js)
+  - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.css) )
+  - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
 
 Or using from CDN
   - [CSS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.css)
