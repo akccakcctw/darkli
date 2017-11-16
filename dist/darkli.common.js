@@ -4,7 +4,8 @@ var CONFIG = {
   box: '.darkli',
   contents: '.darkli-content',
   btnOpens: '[data-darkli]',
-  btnClose: '.darkli .darkli-close'
+  btnClose: '.darkli .darkli-close',
+  heightAuto: false
 };
 
 function updateQueryStringParameter(uri, key, value) {
@@ -50,10 +51,14 @@ function queryAll(selectors) {
 }
 
 function open(targetContent) {
+  var _config$box$querySele;
+
   var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
   window.history.pushState(targetContent, null, newURL);
   this.config.box.classList.add('is-active');
-  this.config.box.querySelector('[data-darkli-content=' + targetContent + ']').classList.add('is-active');
+  var boxContentClasses = ['is-active'];
+  if (this.config.heightAuto) boxContentClasses.push('is-height-auto');
+  (_config$box$querySele = this.config.box.querySelector('[data-darkli-content=' + targetContent + ']').classList).add.apply(_config$box$querySele, boxContentClasses);
 }
 
 function close() {
@@ -138,7 +143,7 @@ var createClass = function () {
 var Otherdarkli = void 0;
 
 var Darkli = function () {
-  function Darkli() {
+  function Darkli(cfg) {
     classCallCheck(this, Darkli);
 
     this.version = '0.4.1';
@@ -146,6 +151,7 @@ var Darkli = function () {
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
     this.moduleName = 'darkli';
+    this.config = Object.assign(CONFIG, cfg);
     this.init();
   }
 
@@ -187,65 +193,63 @@ var Darkli = function () {
     }
   }, {
     key: 'init',
-    value: function init(config) {
+    value: function init() {
       var _this = this;
 
       // configs
-      var cfg = Object.assign(CONFIG, config);
-      this.config = {
-        box: query(cfg.box),
-        btnOpens: queryAll(cfg.btnOpens),
-        btnClose: query(cfg.btnClose)
-      };
+      Object.assign(this.config, {
+        box: query(this.config.box),
+        btnOpens: queryAll(this.config.btnOpens),
+        btnClose: query(this.config.btnClose)
+      });
 
       // default functions
-      if (this.config.box !== null) {
-        Array.from(this.config.btnOpens).forEach(function (btn) {
-          return btn.addEventListener('click', function () {
-            if (!btn.dataset.darkli) {
-              _this.external(btn.getAttribute('href'));
-              return;
-            }
-            _this.open(btn.dataset.darkli);
-          });
-        });
-
-        // open box if URL has query string
-        if (getQueryStringParameter(this.moduleName)) {
-          this.open(getQueryStringParameter(this.moduleName));
-        }
-
-        // create default close button icon(svg)
-        var createDefaultCloseIcon = function createDefaultCloseIcon() {
-          var icon = createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
-          icon.classList.add('darkli-icon');
-          icon.setAttribute('viewBox', '0 0 612 612');
-          _this.config.btnClose.appendChild(icon);
-        };
-        createDefaultCloseIcon();
-
-        this.config.btnClose.addEventListener('click', function () {
-          _this.close();
-        });
-
-        document.addEventListener('mouseup', function (e) {
-          var content = query('.darkli .darkli-content');
-          // click outer space to close darkli
-          if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
-            _this.close();
+      if (this.config.box == null) throw new Error('config.box cannot be null');
+      Array.from(this.config.btnOpens).forEach(function (btn) {
+        return btn.addEventListener('click', function () {
+          if (!btn.dataset.darkli) {
+            _this.external(btn.getAttribute('href'));
+            return;
           }
+          _this.open(btn.dataset.darkli);
         });
+      });
 
-        document.addEventListener('keyup', function (e) {
-          if (e.keyCode === 27 || e.keyCode === 8) {
-            // 27(esc), 8(backspace)
-            _this.close();
-          }
-        });
-        window.addEventListener('popstate', function () {
-          _this.close(false);
-        });
+      // open box if URL has query string
+      if (getQueryStringParameter(this.moduleName)) {
+        this.open(getQueryStringParameter(this.moduleName));
       }
+
+      // create default close button icon(svg)
+      var createDefaultCloseIcon = function createDefaultCloseIcon() {
+        var icon = createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
+        icon.classList.add('darkli-icon');
+        icon.setAttribute('viewBox', '0 0 612 612');
+        _this.config.btnClose.appendChild(icon);
+      };
+      createDefaultCloseIcon();
+
+      this.config.btnClose.addEventListener('click', function () {
+        _this.close();
+      });
+
+      document.addEventListener('mouseup', function (e) {
+        var content = query('.darkli .darkli-content');
+        // click outer space to close darkli
+        if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
+          _this.close();
+        }
+      });
+
+      document.addEventListener('keyup', function (e) {
+        if (e.keyCode === 27 || e.keyCode === 8) {
+          // 27(esc), 8(backspace)
+          _this.close();
+        }
+      });
+      window.addEventListener('popstate', function () {
+        _this.close(false);
+      });
       return this;
     }
   }], [{

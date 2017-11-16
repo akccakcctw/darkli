@@ -69,6 +69,11 @@
       padding: 24px 32px 16px;
       border-radius: 3px;
     }
+    &.is-height-auto {
+      @include for-tablet-portrait-up {
+        min-height: unset;
+      }
+    }
     &.is-active {
       display: initial;
     }

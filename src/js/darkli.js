@@ -4,12 +4,13 @@ import * as utils from './components/utils';
 
 let Otherdarkli;
 class Darkli {
-  constructor() {
+  constructor(cfg) {
     this.version = '0.4.1';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
     this.moduleName = 'darkli';
+    this.config = Object.assign(CONFIG, cfg);
     this.init();
   }
 
@@ -29,56 +30,54 @@ class Darkli {
     box.external.apply(this, args);
   }
 
-  init(config) {
+  init() {
     // configs
-    const cfg = Object.assign(CONFIG, config);
-    this.config = {
-      box: utils.query(cfg.box),
-      btnOpens: utils.queryAll(cfg.btnOpens),
-      btnClose: utils.query(cfg.btnClose),
-    };
+    Object.assign(this.config, {
+      box: utils.query(this.config.box),
+      btnOpens: utils.queryAll(this.config.btnOpens),
+      btnClose: utils.query(this.config.btnClose),
+    });
 
     // default functions
-    if (this.config.box !== null) {
-      Array.from(this.config.btnOpens).forEach(btn => btn.addEventListener('click', () => {
-        if (!btn.dataset.darkli) {
-          this.external(btn.getAttribute('href'));
-          return;
-        }
-        this.open(btn.dataset.darkli);
-      }));
-
-      // open box if URL has query string
-      if (utils.getQueryStringParameter(this.moduleName)) {
-        this.open(utils.getQueryStringParameter(this.moduleName));
+    if (this.config.box == null) throw new Error('config.box cannot be null');
+    Array.from(this.config.btnOpens).forEach(btn => btn.addEventListener('click', () => {
+      if (!btn.dataset.darkli) {
+        this.external(btn.getAttribute('href'));
+        return;
       }
+      this.open(btn.dataset.darkli);
+    }));
 
-      // create default close button icon(svg)
-      const createDefaultCloseIcon = () => {
-        const icon = utils.createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
-        icon.classList.add('darkli-icon');
-        icon.setAttribute('viewBox', '0 0 612 612');
-        this.config.btnClose.appendChild(icon);
-      };
-      createDefaultCloseIcon();
-
-      this.config.btnClose.addEventListener('click', () => { this.close(); });
-
-      document.addEventListener('mouseup', (e) => {
-        const content = utils.query('.darkli .darkli-content');
-        // click outer space to close darkli
-        if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
-          this.close();
-        }
-      });
-
-      document.addEventListener('keyup', (e) => {
-        if (e.keyCode === 27 || e.keyCode === 8) { // 27(esc), 8(backspace)
-          this.close();
-        }
-      });
-      window.addEventListener('popstate', () => { this.close(false); });
+    // open box if URL has query string
+    if (utils.getQueryStringParameter(this.moduleName)) {
+      this.open(utils.getQueryStringParameter(this.moduleName));
     }
+
+    // create default close button icon(svg)
+    const createDefaultCloseIcon = () => {
+      const icon = utils.createSVG('polygon', { points: '612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397      306,341.411 576.521,611.397 612,575.997 341.459,306.011    ' });
+      icon.classList.add('darkli-icon');
+      icon.setAttribute('viewBox', '0 0 612 612');
+      this.config.btnClose.appendChild(icon);
+    };
+    createDefaultCloseIcon();
+
+    this.config.btnClose.addEventListener('click', () => { this.close(); });
+
+    document.addEventListener('mouseup', (e) => {
+      const content = utils.query('.darkli .darkli-content');
+      // click outer space to close darkli
+      if (!e.target.matches('.darkli .darkli-content') && !content.contains(e.target)) {
+        this.close();
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      if (e.keyCode === 27 || e.keyCode === 8) { // 27(esc), 8(backspace)
+        this.close();
+      }
+    });
+    window.addEventListener('popstate', () => { this.close(false); });
     return this;
   }
   static noConflict() {

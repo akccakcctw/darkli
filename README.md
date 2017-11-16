@@ -9,7 +9,7 @@ Small and clean lightbox script
 [https://akccakcctw.github.io/darkli/demo/](https://akccakcctw.github.io/darkli/demo/)
 
 ## Usage
-
+### 1. CSS & JS Files
 Directly download the files below
   - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.css) )
   - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
@@ -17,6 +17,44 @@ Directly download the files below
 Or using from CDN
   - [CSS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.css)
   - [JS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.js)
+
+### 2. Include Files To Website/App
+In your html file:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  ...
+  <link rel="stylesheet" href="path/to/darkli.min.css">
+</head>
+<body>
+  ...
+  <script src="path/to/darkli.min.js"></script>
+</body>
+</html>
+```
+
+### 3. Add Darkli HTML Layout
+```html
+<div class="darkli">
+  <button class="darkli-close"></button>
+  <div class="darkli-content" data-darkli-content="c1">
+    <!-- contents... -->
+  </div>
+  <div class="darkli-content" data-darkli-content="c2">
+    <!-- contents... -->
+  </div>
+</div>
+```
+
+### 4. Initialize
+```js
+// deafult
+const darkli = new Darkli();
+
+// with custom configs
+const darkli = new Darkli({ heightAuto: true });
+```
 
 ## Method
 

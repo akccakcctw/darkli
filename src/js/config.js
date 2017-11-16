@@ -3,4 +3,5 @@ export default {
   contents: '.darkli-content',
   btnOpens: '[data-darkli]',
   btnClose: '.darkli .darkli-close',
+  heightAuto: false,
 };

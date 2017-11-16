@@ -67,6 +67,9 @@
         margin: 32px auto;
         padding: 24px 32px 16px;
         border-radius: 3px; } }
+    @media (min-width: 600px) {
+      .darkli .darkli-content.is-height-auto {
+        min-height: unset; } }
     .darkli .darkli-content.is-active {
       display: initial; }
     .darkli .darkli-content.is-external {

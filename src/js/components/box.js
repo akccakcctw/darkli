@@ -4,7 +4,9 @@ export function open(targetContent) {
   const newURL = utils.updateQueryStringParameter(document.URL, 'darkli', targetContent);
   window.history.pushState(targetContent, null, newURL);
   this.config.box.classList.add('is-active');
-  this.config.box.querySelector(`[data-darkli-content=${targetContent}]`).classList.add('is-active');
+  const boxContentClasses = ['is-active'];
+  if (this.config.heightAuto) boxContentClasses.push('is-height-auto');
+  this.config.box.querySelector(`[data-darkli-content=${targetContent}]`).classList.add(...boxContentClasses);
 }
 
 export function close(popHistory = true) {
