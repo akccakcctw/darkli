@@ -120,6 +120,25 @@ function external(url) {
   }
 }
 
+function nodeListForEach() {
+  // https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+      thisArg = thisArg || window;
+      for (var i = 0; i < this.length; i++) {
+        callback.call(thisArg, this[i], i, this);
+      }
+    };
+  }
+}
+
+function elementMatches() {
+  // https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+  if (!Element.prototype.matches) {
+    Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+  }
+}
+
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -145,6 +164,10 @@ var createClass = function () {
 }();
 
 var Otherdarkli = void 0;
+
+// polyfills
+nodeListForEach();
+elementMatches();
 
 var Darkli = function () {
   function Darkli(cfg) {

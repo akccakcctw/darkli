@@ -1,8 +1,14 @@
 import CONFIG from './config';
 import * as box from './components/box';
 import * as utils from './components/utils';
+import * as polyfill from './components/polyfills';
 
 let Otherdarkli;
+
+// polyfills
+polyfill.nodeListForEach();
+polyfill.elementMatches();
+
 class Darkli {
   constructor(cfg) {
     this.version = '0.4.1';

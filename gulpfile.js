@@ -1,11 +1,10 @@
-/* eslint no-param-reassign:0 */
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync').create(); // browser auto reload
 
 const $ = gulpLoadPlugins();
 
-gulp.task('default', ['js', 'css', 'demo']);
+gulp.task('default', ['js', 'css', 'demo', 'min']);
 
 gulp.task('browserSync', ['default'], () => {
   browserSync.init({
@@ -18,8 +17,8 @@ gulp.task('browserSync', ['default'], () => {
 });
 
 gulp.task('watch', ['browserSync'], () => {
-  gulp.watch('src/**/*.js', ['js']);
-  gulp.watch('src/**/*.scss', ['css', 'css-demo']);
+  gulp.watch('src/**/*.js', ['js', 'js-min']);
+  gulp.watch('src/**/*.scss', ['css', 'css-demo', 'css-min']);
 });
 
 gulp.task('min', ['js-min', 'css-min']);
