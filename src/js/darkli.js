@@ -11,7 +11,7 @@ polyfill.elementMatches();
 
 class Darkli {
   constructor(cfg) {
-    this.version = '0.4.1';
+    this.version = '0.5.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
