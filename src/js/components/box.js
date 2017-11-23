@@ -3,20 +3,12 @@ import * as utils from './utils';
 export function open(targetContent) {
   const _beforeOpen = () => new Promise((resolve) => {
     if (!this.config.beforeOpen) return resolve();
-    try {
-      this.config.beforeOpen();
-    } catch (e) {
-      throw new Error(e, 'beforeOpen: should be a function');
-    }
+    this.config.beforeOpen();
     return resolve();
   });
   const _afterOpen = () => new Promise((resolve) => {
     if (!this.config.afterOpen) return resolve();
-    try {
-      this.config.afterOpen();
-    } catch (e) {
-      throw new Error(e, 'afterOpen: should be a function');
-    }
+    this.config.afterOpen();
     return resolve();
   });
   const _open = () => new Promise((resolve) => {
@@ -34,7 +26,18 @@ export function open(targetContent) {
 }
 
 export function close(popHistory = true) {
-  if (this.config.box.classList.contains('is-active')) {
+  if (!this.config.box.classList.contains('is-active')) return;
+  const _beforeClose = () => new Promise((resolve) => {
+    if (!this.config.beforeClose) return resolve();
+    this.config.beforeClose();
+    return resolve();
+  });
+  const _afterClose = () => new Promise((resolve) => {
+    if (!this.config.afterClose) return resolve();
+    this.config.afterClose();
+    return resolve();
+  });
+  const _close = () => new Promise((resolve) => {
     this.config.box.classList.remove('is-active');
     this.config.box.querySelectorAll('.darkli-content').forEach((content) => {
       if (content.classList.contains('auto-destroy')) {
@@ -45,7 +48,11 @@ export function close(popHistory = true) {
     if (popHistory === true) {
       window.history.go(-1);
     }
-  }
+    return resolve();
+  });
+  _beforeClose()
+    .then(_close())
+    .then(_afterClose());
 }
 
 export function create({

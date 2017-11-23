@@ -60,22 +60,14 @@ function open(targetContent) {
   var _beforeOpen = function _beforeOpen() {
     return new Promise(function (resolve) {
       if (!_this.config.beforeOpen) return resolve();
-      try {
-        _this.config.beforeOpen();
-      } catch (e) {
-        throw new Error(e, 'beforeOpen: should be a function');
-      }
+      _this.config.beforeOpen();
       return resolve();
     });
   };
   var _afterOpen = function _afterOpen() {
     return new Promise(function (resolve) {
       if (!_this.config.afterOpen) return resolve();
-      try {
-        _this.config.afterOpen();
-      } catch (e) {
-        throw new Error(e, 'afterOpen: should be a function');
-      }
+      _this.config.afterOpen();
       return resolve();
     });
   };
@@ -96,20 +88,41 @@ function open(targetContent) {
 }
 
 function close() {
+  var _this2 = this;
+
   var popHistory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
-  if (this.config.box.classList.contains('is-active')) {
-    this.config.box.classList.remove('is-active');
-    this.config.box.querySelectorAll('.darkli-content').forEach(function (content) {
-      if (content.classList.contains('auto-destroy')) {
-        content.parentNode.removeChild(content);
-      }
-      content.classList.remove('is-active');
+  if (!this.config.box.classList.contains('is-active')) return;
+  var _beforeClose = function _beforeClose() {
+    return new Promise(function (resolve) {
+      if (!_this2.config.beforeClose) return resolve();
+      _this2.config.beforeClose();
+      return resolve();
     });
-    if (popHistory === true) {
-      window.history.go(-1);
-    }
-  }
+  };
+  var _afterClose = function _afterClose() {
+    return new Promise(function (resolve) {
+      if (!_this2.config.afterClose) return resolve();
+      _this2.config.afterClose();
+      return resolve();
+    });
+  };
+  var _close = function _close() {
+    return new Promise(function (resolve) {
+      _this2.config.box.classList.remove('is-active');
+      _this2.config.box.querySelectorAll('.darkli-content').forEach(function (content) {
+        if (content.classList.contains('auto-destroy')) {
+          content.parentNode.removeChild(content);
+        }
+        content.classList.remove('is-active');
+      });
+      if (popHistory === true) {
+        window.history.go(-1);
+      }
+      return resolve();
+    });
+  };
+  _beforeClose().then(_close()).then(_afterClose());
 }
 
 function create() {
