@@ -11,5 +11,6 @@ module.exports = {
 		"no-console": 0,
     "no-plusplus": 0,
     "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
 	}
 };

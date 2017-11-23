@@ -51,14 +51,44 @@ function queryAll(selectors) {
 }
 
 function open(targetContent) {
-  var _config$box$querySele;
+  var _this = this;
 
-  var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
-  window.history.pushState(targetContent, null, newURL);
-  this.config.box.classList.add('is-active');
-  var boxContentClasses = ['is-active'];
-  if (this.config.heightAuto) boxContentClasses.push('is-height-auto');
-  (_config$box$querySele = this.config.box.querySelector('[data-darkli-content=' + targetContent + ']').classList).add.apply(_config$box$querySele, boxContentClasses);
+  var _beforeOpen = function _beforeOpen() {
+    return new Promise(function (resolve) {
+      if (!_this.config.beforeOpen) return resolve();
+      try {
+        _this.config.beforeOpen();
+      } catch (e) {
+        throw new Error(e, 'beforeOpen: should be a function');
+      }
+      return resolve();
+    });
+  };
+  var _afterOpen = function _afterOpen() {
+    return new Promise(function (resolve) {
+      if (!_this.config.afterOpen) return resolve();
+      try {
+        _this.config.afterOpen();
+      } catch (e) {
+        throw new Error(e, 'afterOpen: should be a function');
+      }
+      return resolve();
+    });
+  };
+  var _open = function _open() {
+    return new Promise(function (resolve) {
+      var _config$box$querySele;
+
+      var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
+      window.history.pushState(targetContent, null, newURL);
+      _this.config.box.classList.add('is-active');
+      var boxContentClasses = ['is-active'];
+      if (_this.config.heightAuto) boxContentClasses.push('is-height-auto');
+      (_config$box$querySele = _this.config.box.querySelector('[data-darkli-content=' + targetContent + ']').classList).add.apply(_config$box$querySele, boxContentClasses);
+      return resolve();
+    });
+  };
+  _beforeOpen().then(_open()).then(_afterOpen());
 }
 
 function close() {

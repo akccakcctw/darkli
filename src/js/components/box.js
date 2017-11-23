@@ -1,12 +1,36 @@
 import * as utils from './utils';
 
 export function open(targetContent) {
-  const newURL = utils.updateQueryStringParameter(document.URL, 'darkli', targetContent);
-  window.history.pushState(targetContent, null, newURL);
-  this.config.box.classList.add('is-active');
-  const boxContentClasses = ['is-active'];
-  if (this.config.heightAuto) boxContentClasses.push('is-height-auto');
-  this.config.box.querySelector(`[data-darkli-content=${targetContent}]`).classList.add(...boxContentClasses);
+  const _beforeOpen = () => new Promise((resolve) => {
+    if (!this.config.beforeOpen) return resolve();
+    try {
+      this.config.beforeOpen();
+    } catch (e) {
+      throw new Error(e, 'beforeOpen: should be a function');
+    }
+    return resolve();
+  });
+  const _afterOpen = () => new Promise((resolve) => {
+    if (!this.config.afterOpen) return resolve();
+    try {
+      this.config.afterOpen();
+    } catch (e) {
+      throw new Error(e, 'afterOpen: should be a function');
+    }
+    return resolve();
+  });
+  const _open = () => new Promise((resolve) => {
+    const newURL = utils.updateQueryStringParameter(document.URL, 'darkli', targetContent);
+    window.history.pushState(targetContent, null, newURL);
+    this.config.box.classList.add('is-active');
+    const boxContentClasses = ['is-active'];
+    if (this.config.heightAuto) boxContentClasses.push('is-height-auto');
+    this.config.box.querySelector(`[data-darkli-content=${targetContent}]`).classList.add(...boxContentClasses);
+    return resolve();
+  });
+  _beforeOpen()
+    .then(_open())
+    .then(_afterOpen());
 }
 
 export function close(popHistory = true) {
