@@ -2,6 +2,8 @@
 
 Small and clean lightbox script
 
+[![NPM version](https://img.shields.io/npm/v/darkli.svg?style=flat-square)](https://www.npmjs.com/package/darkli)
+[![Dependencies](https://david-dm.org/akccakcctw/darkli.svg)](https://david-dm.org/akccakcctw/darkli)
 ![LICENSE](https://img.shields.io/github/license/akccakcctw/darkli.svg)
 ![downloads_npm](https://img.shields.io/npm/dt/darkli.svg)
 
