@@ -58,10 +58,6 @@
     "require": [
       "babel-register"
     ],
-    "babel": {
-      "presets": [
-        "es2015"
-      ]
-    }
+    "babel": "inherit"
   }
 }
