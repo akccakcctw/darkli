@@ -92,3 +92,10 @@ gulp.task('css-demo', () => {
     }))
     .pipe(browserSync.stream());
 });
+
+// lint
+gulp.task('lint', () => {
+  gulp.src('src/js/**/*.js')
+    .pipe($.eslint())
+    .pipe($.eslint.format());
+});

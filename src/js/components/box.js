@@ -80,8 +80,8 @@ export function remove(targetContent) {
   console.log(targetContent);
 }
 
-const youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})(.*)?/i;
-const youtubeHandler = url => `
+export const youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})(.*)?/i;
+export const youtubeHandler = url => `
   <div class="darkli-iframe-container">
     <iframe frameborder="0" src="${url}" allowfullscreen></iframe>
   </div>

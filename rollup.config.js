@@ -1,7 +1,7 @@
-const babel = require('rollup-plugin-babel');
+import babel from 'rollup-plugin-babel';
 
 // https://rollupjs.org/#javascript-api
-module.exports = {
+export default {
   input: 'src/js/darkli.js',
   output: [
     {
