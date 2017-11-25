@@ -1,4 +1,4 @@
-export function updateQueryStringParameter(uri, key, value) {
+export function updateQueryString(uri, key, value) {
   const re = new RegExp(`([?&])${key}=.*?(&|$)`, 'i');
   const separator = uri.indexOf('?') !== -1 ? '&' : '?';
   if (uri.match(re)) {
@@ -7,8 +7,7 @@ export function updateQueryStringParameter(uri, key, value) {
   return `${uri + separator + key}=${value}`;
 }
 
-export function getQueryStringParameter(key) {
-  const url = window.location.href;
+export function getQueryString(key, url = document.URL) {
   const name = key.replace(/[[\]]/g, '\\$&');
   const re = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
   const results = re.exec(url);

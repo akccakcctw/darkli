@@ -8,7 +8,7 @@ var CONFIG = {
   heightAuto: false
 };
 
-function updateQueryStringParameter(uri, key, value) {
+function updateQueryString(uri, key, value) {
   var re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
   var separator = uri.indexOf('?') !== -1 ? '&' : '?';
   if (uri.match(re)) {
@@ -17,8 +17,9 @@ function updateQueryStringParameter(uri, key, value) {
   return uri + separator + key + '=' + value;
 }
 
-function getQueryStringParameter(key) {
-  var url = window.location.href;
+function getQueryString(key) {
+  var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.URL;
+
   var name = key.replace(/[[\]]/g, '\\$&');
   var re = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
   var results = re.exec(url);
@@ -71,7 +72,7 @@ function open(targetContent) {
     return new Promise(function (resolve) {
       var _config$box$querySele;
 
-      var newURL = updateQueryStringParameter(document.URL, 'darkli', targetContent);
+      var newURL = updateQueryString(document.URL, 'darkli', targetContent);
       window.history.pushState(targetContent, null, newURL);
       _this.config.box.classList.add('is-active');
       var boxContentClasses = ['is-active'];
@@ -262,8 +263,8 @@ var Darkli = function () {
       });
 
       // open box if URL has query string
-      if (getQueryStringParameter(this.moduleName)) {
-        this.open(getQueryStringParameter(this.moduleName));
+      if (getQueryString(this.moduleName)) {
+        this.open(getQueryString(this.moduleName));
       }
 
       // create default close button icon(svg)

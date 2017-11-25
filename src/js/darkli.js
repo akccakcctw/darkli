@@ -55,8 +55,8 @@ class Darkli {
     }));
 
     // open box if URL has query string
-    if (utils.getQueryStringParameter(this.moduleName)) {
-      this.open(utils.getQueryStringParameter(this.moduleName));
+    if (utils.getQueryString(this.moduleName)) {
+      this.open(utils.getQueryString(this.moduleName));
     }
 
     // create default close button icon(svg)

@@ -12,7 +12,7 @@ export function open(targetContent) {
     return resolve();
   });
   const _open = () => new Promise((resolve) => {
-    const newURL = utils.updateQueryStringParameter(document.URL, 'darkli', targetContent);
+    const newURL = utils.updateQueryString(document.URL, 'darkli', targetContent);
     window.history.pushState(targetContent, null, newURL);
     this.config.box.classList.add('is-active');
     const boxContentClasses = ['is-active'];
