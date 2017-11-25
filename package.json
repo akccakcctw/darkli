@@ -42,14 +42,16 @@
     "uglify-js": "^3.1.10"
   },
   "scripts": {
-    "test": "cross-env BABEL_ENV=test gulp lint && yarn run ava",
+    "test": "cross-env BABEL_ENV=test gulp lint && npm run ava",
     "ava": "cross-env BABEL_ENV=test ava --verbose",
     "ava:watch": "cross-env BABEL_ENV=test ava --verbose --watch",
+    "start": "npm run gulp",
     "gulp": "cross-env BABEL_ENV=build gulp",
-    "tree": "node bin/tree.js",
     "build:js": "rollup -c",
     "compress:js": "uglifyjs dist/darkli.js -o dist/darkli.min.js -c -m --comments /^!/",
-    "watch:js": "rollup -c -w -m"
+    "watch:js": "rollup -c -w -m",
+    "tree": "node bin/tree.js",
+    "preversion": "npm test"
   },
   "ava": {
     "files": [

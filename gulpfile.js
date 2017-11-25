@@ -24,7 +24,7 @@ gulp.task('watch', ['browserSync'], () => {
 gulp.task('min', ['js-min', 'css-min']);
 
 gulp.task('js', () => {
-  $.run('yarn run build:js').exec()
+  $.run('npm run build:js').exec()
     .pipe($.notify({
       message: 'Compile Javascript Complete!',
       onLast: true,
@@ -33,7 +33,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('js-min', () => {
-  $.run('yarn run compress:js').exec()
+  $.run('npm run compress:js').exec()
     .pipe($.notify({
       message: 'Minify Javascript Complete!',
       onLast: true,

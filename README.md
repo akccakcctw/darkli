@@ -98,10 +98,10 @@ $ yarn
 ### Usage
 
 ```bash
-# Build `sass`, `javascript` and `demo`:
-$ yarn run gulp
+# Build `sass`, `javascript`, `demo` and minified files:
+$ yarn start # or `$ yarn run gulp`
 
-# Watch and build `sass`, `javascript`
+# Build `sass`, `javascript`, and then watch file
 $ yarn run gulp watch
 
 # Uglify and minify `.css` and `.js` files
@@ -117,9 +117,21 @@ $ yarn run gulp css-min
 
 Checking gulpfile.js for more details.
 
+### Testing
+
+```bash
+# Lint and then do unit test with AVA
+$ yarn test
+
+$ yarn run ava
+
+$ yarn run ava:watch
+
+```
+
 ### Show File Structure
 
-Just type follow command to view the graphical file structure in terminal.
+Just type follow command to view the graphical file structure in your terminal.
 
 ```bash
 $ yarn run tree
