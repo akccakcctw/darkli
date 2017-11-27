@@ -7,5 +7,7 @@ module.exports = {
     btn_youtube: '.btn[href="https://www.youtube.com/embed/My4j3vgFxbE"]',
     content_c1: '[data-darkli-content="c1"]',
     content_c1__title: '[data-darkli-content="c1"] > .title',
+    content_c2: '[data-darkli-content="c2"]',
+    content_c2__image: '[data-darkli-content="c2"] > img',
   },
 };
