@@ -191,7 +191,7 @@ var Darkli = function () {
   function Darkli(cfg) {
     _classCallCheck(this, Darkli);
 
-    this.version = '0.5.0';
+    this.version = '0.6.0';
     this.author = 'Rex Tsou <akccakccwww@gmail.com>';
     this.bugs = 'https://github.com/akccakcctw/darkli/issues';
     this.license = 'WTFPL';
