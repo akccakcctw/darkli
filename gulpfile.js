@@ -6,15 +6,18 @@ const $ = gulpLoadPlugins();
 
 gulp.task('default', ['js', 'css', 'demo', 'min']);
 
-gulp.task('browserSync', ['default'], () => {
+gulp.task('localhost', () => {
   browserSync.init({
     notify: false,
+    open: false,
     port: 8000,
     server: {
       baseDir: 'demo',
     },
   });
 });
+
+gulp.task('browserSync', ['default', 'localhost']);
 
 gulp.task('watch', ['browserSync'], () => {
   gulp.watch('src/**/*.js', ['js', 'js-min']);

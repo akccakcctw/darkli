@@ -1,5 +1,5 @@
 module.exports = {
-  url: 'https://akccakcctw.github.io/darkli/demo/',
+  url: 'http://localhost:8000/',
   elements: {
     btnClose: '.darkli-close',
     btn_c1: '[data-darkli="c1"]',
