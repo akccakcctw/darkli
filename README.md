@@ -8,10 +8,13 @@ Small and clean lightbox script
 ![downloads_npm](https://img.shields.io/npm/dt/darkli.svg)
 
 ## Demo
+
 [https://akccakcctw.github.io/darkli/demo/](https://akccakcctw.github.io/darkli/demo/)
 
 ## Usage
+
 ### 1. CSS & JS Files
+
 Directly download the files below
   - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.css) )
   - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
@@ -21,7 +24,9 @@ Or using from CDN
   - [JS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.js)
 
 ### 2. Include Files To Website/App
+
 In your html file:
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -37,6 +42,7 @@ In your html file:
 ```
 
 ### 3. Add Darkli HTML Layout
+
 ```html
 <div class="darkli">
   <button class="darkli-close"></button>
@@ -50,6 +56,7 @@ In your html file:
 ```
 
 ### 4. Initialize
+
 ```js
 // deafult
 const darkli = new Darkli();
@@ -84,57 +91,75 @@ const darkli = new Darkli({ heightAuto: true });
 
 ### Prerequisites
 
-- [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)( we assume you have installed [node.js](https://nodejs.org/en/) ).
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)( we assume you have installed [node.js](https://nodejs.org/en/) ).
 
 ### Getting Started
 
 Before coding, you need to install packages for development, we choose [gulp](http://gulpjs.com/) as our build system.
 
-```bash
+```sh
 # install all building tools and dependencies
-$ yarn
+$ npm install # or yarn
 ```
 
 ### Usage
 
-```bash
+```sh
 # Build `sass`, `javascript`, `demo` and minified files:
-$ yarn start # or `$ yarn run gulp`
+$ npm start # or `npm run gulp`
 
 # Build `sass`, `javascript`, and then watch file
-$ yarn run gulp watch
+$ npm run gulp watch
 
 # Uglify and minify `.css` and `.js` files
-$ yarn run gulp min
+$ npm run gulp min
 
 # You can also use these commands below
-$ yarn run gulp js
-$ yarn run gulp css
-$ yarn run gulp js-min
-$ yarn run gulp css-min
-
+$ npm run gulp js
+$ npm run gulp css
+$ npm run gulp js-min
+$ npm run gulp css-min
 ```
 
 Checking gulpfile.js for more details.
 
 ### Testing
 
-```bash
+**Unit test**
+
+```sh
 # Lint and then do unit test with AVA
-$ yarn test
+$ npm test
 
-$ yarn run ava
+$ npm run ava
 
-$ yarn run ava:watch
+$ npm run ava:watch
+```
 
+**End-to-End test**
+
+We use [Nightwatch.js](http://nightwatchjs.org/) as our E2E test tool.
+
+Before test, you should start a localhost server at `8000` port, use gulp task to start it:
+
+```sh
+$ npm run gulp localhost
+```
+
+Then you can start the E2E test:
+```sh
+$ npm run e2e
+
+# firefox
+$ npm run e2e:firefox
 ```
 
 ### Show File Structure
 
 Just type follow command to view the graphical file structure in your terminal.
 
-```bash
-$ yarn run tree
+```sh
+$ npm run tree
 ```
 
 ## License
