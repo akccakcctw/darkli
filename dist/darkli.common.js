@@ -5,7 +5,8 @@ var CONFIG = {
   contents: '.darkli-content',
   btnOpens: '[data-darkli]',
   btnClose: '.darkli .darkli-close',
-  heightAuto: false
+  heightAuto: false,
+  closeKeys: [27, 8] // 27(esc), 8(backspace)
 };
 
 function updateQueryString(uri, key, value) {
@@ -289,11 +290,11 @@ var Darkli = function () {
       });
 
       document.addEventListener('keyup', function (e) {
-        if (e.keyCode === 27 || e.keyCode === 8) {
-          // 27(esc), 8(backspace)
+        if (_this.config.closeKeys.includes(e.keyCode)) {
           _this.close();
         }
       });
+
       window.addEventListener('popstate', function () {
         _this.close(false);
       });

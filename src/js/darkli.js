@@ -79,10 +79,11 @@ class Darkli {
     });
 
     document.addEventListener('keyup', (e) => {
-      if (e.keyCode === 27 || e.keyCode === 8) { // 27(esc), 8(backspace)
+      if (this.config.closeKeys.includes(e.keyCode)) {
         this.close();
       }
     });
+
     window.addEventListener('popstate', () => { this.close(false); });
     return this;
   }
