@@ -75,6 +75,7 @@ const darkli = new Darkli({ heightAuto: true });
 | btnClose    | string   | '.darkli .darkli-close'| |
 | heightAuto  | boolean  | false                  | Set to **true** and box will adopt its content height |
 | beforeOpen  | function |                        | Will be executed before open |
+| closeKeys   | array    | [27, 8]                | keyCode: 27(esc), 8(backspace) |
 | afterOpen   | function |                        | Will be executed after open |
 | beforeClose | function |                        | Will be executed before close |
 | afterClose  | function |                        | Will be executed after close |
