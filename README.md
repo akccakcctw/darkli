@@ -16,8 +16,8 @@ Small and clean lightbox script
 ### 1. CSS & JS Files
 
 Directly download the files below
-  - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.css) )
-  - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [View in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
+  - [CSS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.css) ( [view in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.css) )
+  - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [view in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
 
 Or using from CDN
   - [CSS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.css)
@@ -74,13 +74,13 @@ const darkli = new Darkli({ heightAuto: true });
 | btnOpens    | string   | '[data-darkli]'        | |
 | btnClose    | string   | '.darkli .darkli-close'| |
 | heightAuto  | boolean  | false                  | Set to **true** and box will adopt its content height |
-| beforeOpen  | function |                        | Will be executed before open |
 | closeKeys   | array    | [27, 8]                | keyCode: 27(esc), 8(backspace) |
+| beforeOpen  | function |                        | Will be executed before open |
 | afterOpen   | function |                        | Will be executed after open |
 | beforeClose | function |                        | Will be executed before close |
 | afterClose  | function |                        | Will be executed after close |
 
-## Method
+## Methods
 
 | Method                        | Description |
 | ----------------------------- | ----------- |
@@ -92,7 +92,7 @@ const darkli = new Darkli({ heightAuto: true });
 
 ### Prerequisites
 
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)( we assume you have installed [node.js](https://nodejs.org/en/) ).
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) ( we assume you have installed [node.js](https://nodejs.org/en/) ).
 
 ### Getting Started
 
