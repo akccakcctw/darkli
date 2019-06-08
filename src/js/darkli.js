@@ -1,8 +1,8 @@
+import * as packageJson from '@base/package.json';
 import CONFIG from './config';
 import * as box from './components/box';
 import * as utils from './components/utils';
 import * as polyfill from './components/polyfills';
-import * as packageJson from '@base/package.json';
 
 let Otherdarkli;
 
