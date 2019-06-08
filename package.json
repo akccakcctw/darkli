@@ -49,6 +49,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
+    "lint-staged": "^8.2.0",
     "nightwatch": "^0.9.20",
     "rollup": "^1.14.4",
     "rollup-plugin-alias": "^1.5.2",
@@ -64,7 +65,7 @@
     "uglify-js": "^3.3.14"
   },
   "scripts": {
-    "test": "cross-env BABEL_ENV=test gulp lint && npm run ava",
+    "test": "npm run ava",
     "ava": "cross-env BABEL_ENV=test ava --verbose",
     "ava:watch": "cross-env BABEL_ENV=test ava --verbose --watch",
     "selenium-setup": "selenium-standalone install",
@@ -88,5 +89,23 @@
       "babel-register"
     ],
     "babel": "inherit"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "src/js/**/*.js": [
+        "eslint --fix",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "**/{dist,demo}/**/*.js",
+      "*.min.*"
+    ]
   }
 }
