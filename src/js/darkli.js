@@ -2,6 +2,7 @@ import CONFIG from './config';
 import * as box from './components/box';
 import * as utils from './components/utils';
 import * as polyfill from './components/polyfills';
+import * as packageJson from '@base/package.json';
 
 let Otherdarkli;
 
@@ -11,11 +12,11 @@ polyfill.elementMatches();
 
 class Darkli {
   constructor(cfg) {
-    this.version = '0.6.0';
-    this.author = 'Rex Tsou <akccakccwww@gmail.com>';
-    this.bugs = 'https://github.com/akccakcctw/darkli/issues';
-    this.license = 'WTFPL';
-    this.moduleName = 'darkli';
+    this.version = packageJson.version;
+    this.author = packageJson.author;
+    this.bugs = packageJson.bugs;
+    this.license = packageJson.license;
+    this.moduleName = packageJson.name;
     this.config = Object.assign(CONFIG, cfg);
     this.init();
   }
