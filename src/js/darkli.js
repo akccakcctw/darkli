@@ -88,14 +88,15 @@ class Darkli {
     window.addEventListener('popstate', () => { this.close(false); });
     return this;
   }
+
   static noConflict() {
     window.darkli = Otherdarkli;
     return Darkli;
   }
 }
 
-if (typeof exports === 'undefined' &&
-  typeof window.darkli !== 'undefined') {
+if (typeof exports === 'undefined'
+  && typeof window.darkli !== 'undefined') {
   console.log('darkli already defined. Rename it as `Otherdarkli`');
   window.Otherdarkli = window.darkli;
   window.darkli = Darkli;
