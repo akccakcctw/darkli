@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "archy": "^1.0.0",
-    "ava": "^0.23.0",
+    "ava": "^2.0.0",
     "babel-eslint": "^10.0.1",
     "browser-sync": "^2.26.7",
     "chai": "^4.1.2",
@@ -86,9 +86,8 @@
       "test/unit/**/*.test.js"
     ],
     "require": [
-      "babel-register"
-    ],
-    "babel": "inherit"
+      "@babel/register"
+    ]
   },
   "husky": {
     "hooks": {
