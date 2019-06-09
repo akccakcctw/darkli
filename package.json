@@ -38,8 +38,10 @@
     "browser-sync": "^2.26.7",
     "chai": "^4.1.2",
     "chromedriver": "^74.0.0",
+    "commitizen": "^3.1.1",
     "cross-env": "^5.2.0",
     "cross-spawn": "^6.0.5",
+    "cz-conventional-changelog": "^2.1.0",
     "del": "^4.1.1",
     "eslint": "^4.18.2",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -87,7 +89,8 @@
     "dev:js": "cross-env NODE_ENV=development rollup -c rollup.config.dev.js",
     "prod:js": "cross-env NODE_ENV=production rollup -c rollup.config.prod.js",
     "tree": "npx ./bin/tree.js",
-    "preversion": "npm test"
+    "preversion": "npm test",
+    "commit": "git-cz"
   },
   "ava": {
     "files": [
@@ -100,6 +103,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
+      "commit-msg": "node bin/verify-commit-msg.js",
       "pre-push": "npm test"
     }
   },
@@ -114,5 +118,10 @@
       "**/{dist,demo}/**/*.js",
       "*.min.*"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

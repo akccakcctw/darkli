@@ -22,6 +22,13 @@ module.exports = {
     'no-plusplus': 0,
     'no-param-reassign': 0,
     'no-underscore-dangle': 0,
+    quotes: [
+      'error',
+      'single',
+      {
+        'allowTemplateLiterals': true
+      },
+    ],
 	},
   settings: {
     'import/resolver': {
