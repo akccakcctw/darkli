@@ -1,6 +1,6 @@
 {
   "name": "darkli",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Darkli: small and clean lightbox script",
   "main": "dist/darkli.common.js",
   "module": "dist/darkli.esm.js",
