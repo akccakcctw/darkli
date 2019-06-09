@@ -2,7 +2,10 @@
   "name": "darkli",
   "version": "0.6.1",
   "description": "Darkli: small and clean lightbox script",
-  "main": "dist/js/darkli.js",
+  "main": "dist/darkli.common.js",
+  "module": "dist/darkli.esm.js",
+  "unpkg": "dist/darkli.js",
+  "jsdelivr": "dist/darkli.js",
   "author": "Rex Tsou <akccakccwww@gmail.com>",
   "keywords": [
     "lightbox",
