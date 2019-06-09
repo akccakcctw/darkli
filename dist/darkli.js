@@ -1,5 +1,5 @@
 /*!
- * Darkli v0.7.1
+ * Darkli v0.7.2
  * (c) 2019 Rex Tsou <akccakccwww@gmail.com>
  * Released under the MIT License.
  */
@@ -32,7 +32,6 @@
   }
 
   var name = "darkli";
-  var version = "0.7.0";
   var author = "Rex Tsou <akccakccwww@gmail.com>";
   var license = "MIT";
   var bugs = {
@@ -249,7 +248,7 @@
     function Darkli(cfg) {
       _classCallCheck(this, Darkli);
 
-      this.version = version;
+      this.version = '0.7.2';
       this.author = author;
       this.bugs = bugs;
       this.license = license;
