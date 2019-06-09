@@ -77,12 +77,12 @@
     "uglify-js": "^3.3.14"
   },
   "scripts": {
-    "test": "npm run ava",
+    "test:unit": "npm run ava",
+    "test:e2e": "npm run prod && node test/e2e/runner.js",
     "ava": "cross-env BABEL_ENV=test ava --verbose",
     "ava:watch": "cross-env BABEL_ENV=test ava --verbose --watch",
     "selenium-setup": "selenium-standalone install",
     "selenium-start": "selenium-standalone start",
-    "e2e": "npm run prod && node test/e2e/runner.js",
     "start": "npm run gulp",
     "dev": "cross-env BABEL_ENV=build NODE_ENV=development gulp",
     "prod": "cross-env BABEL_ENV=build NODE_ENV=production gulp",
@@ -90,7 +90,8 @@
     "prod:js": "cross-env NODE_ENV=production rollup -c rollup.config.prod.js",
     "tree": "npx ./bin/tree.js",
     "preversion": "npm test",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "bash bin/release.sh"
   },
   "ava": {
     "files": [
@@ -104,7 +105,7 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "commit-msg": "node bin/verify-commit-msg.js",
-      "pre-push": "npm test"
+      "pre-push": "npm run test:unit"
     }
   },
   "lint-staged": {
