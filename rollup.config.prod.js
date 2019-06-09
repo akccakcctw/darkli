@@ -2,8 +2,9 @@ import { uglify } from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 
 import baseConfig from './rollup.config.base';
-import { name, version, author } from './package.json';
+import { name, author, version as packageVersion } from './package.json';
 
+const version = process.env.VERSION || packageVersion;
 const exportName = 'Darkli';
 const banner = `${'/*!\n'}`
   + ` * ${exportName} v${version}\n`
