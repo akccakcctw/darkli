@@ -1,3 +1,4 @@
+import replace from 'rollup-plugin-replace';
 import { uglify } from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 
@@ -44,6 +45,9 @@ export default [
     ],
     plugins: [
       ...baseConfig.plugins,
+      replace({
+        __VERSION__: version,
+      }),
     ],
   },
   // .min.js
@@ -59,6 +63,9 @@ export default [
     ],
     plugins: [
       ...baseConfig.plugins,
+      replace({
+        __VERSION__: version,
+      }),
       uglify({
         compress: {
           drop_console: true,

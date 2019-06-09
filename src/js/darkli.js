@@ -12,7 +12,7 @@ polyfill.elementMatches();
 
 class Darkli {
   constructor(cfg) {
-    this.version = packageJson.version;
+    this.version = '__VERSION__';
     this.author = packageJson.author;
     this.bugs = packageJson.bugs;
     this.license = packageJson.license;
