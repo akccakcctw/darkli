@@ -164,4 +164,4 @@ $ npm run tree
 ```
 
 ## License
-You just DO WHAT THE FUCK YOU WANT TO. [WTFPL](https://github.com/akccakcctw/darkli/blob/master/LICENSE)
+[MIT](https://github.com/akccakcctw/darkli/blob/master/LICENSE)

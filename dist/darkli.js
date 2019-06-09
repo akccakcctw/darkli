@@ -31,6 +31,14 @@
     return Constructor;
   }
 
+  var name = "darkli";
+  var version = "0.6.1";
+  var author = "Rex Tsou <akccakccwww@gmail.com>";
+  var license = "MIT";
+  var bugs = {
+  	url: "https://github.com/akccakcctw/darkli/issues"
+  };
+
   var CONFIG = {
     box: '.darkli',
     contents: '.darkli-content',
@@ -229,14 +237,6 @@
       Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
     }
   }
-
-  var name = "darkli";
-  var version = "0.6.1";
-  var author = "Rex Tsou <akccakccwww@gmail.com>";
-  var license = "WTFPL";
-  var bugs = {
-  	url: "https://github.com/akccakcctw/darkli/issues"
-  };
 
   var Otherdarkli; // polyfills
 
