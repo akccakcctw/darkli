@@ -89,7 +89,6 @@
     "dev:js": "cross-env NODE_ENV=development rollup -c rollup.config.dev.js",
     "prod:js": "cross-env NODE_ENV=production rollup -c rollup.config.prod.js",
     "tree": "npx ./bin/tree.js",
-    "preversion": "npm test",
     "commit": "git-cz",
     "release": "bash bin/release.sh"
   },
