@@ -20,8 +20,8 @@ Directly download the files below
   - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [view in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
 
 Or using from CDN
-  - [CSS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.css)
-  - [JS](https://cdn.rawgit.com/akccakcctw/darkli/master/dist/darkli.min.js)
+  - [CSS](https://cdn.jsdelivr.net/npm/darkli@0.6.1/dist/darkli.min.css)
+  - [JS](https://cdn.jsdelivr.net/npm/darkli@0.6.1/dist/darkli.min.js)
 
 ### 2. Include Files To Website/App
 
