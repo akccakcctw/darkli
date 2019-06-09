@@ -15,7 +15,7 @@ module.exports = {
     demoPage.navigate()
       .click('@btn_c1')
       .waitForElementVisible('@content_c1', 1000);
-    browser.keys(browser.Keys.Esc);
+    browser.keys(browser.Keys.ESCAPE);
     demoPage.navigate()
       .waitForElementNotVisible('@content_c1', 1000)
       .assert.urlEquals(demoPage.url)
@@ -33,7 +33,7 @@ module.exports = {
     demoPage.navigate()
       .click('@btn_c2')
       .waitForElementVisible('@content_c2', 1000);
-    browser.keys(browser.Keys.Esc);
+    browser.keys(browser.Keys.ESCAPE);
     demoPage.navigate()
       .waitForElementNotVisible('@content_c2', 1000)
       .assert.urlEquals(demoPage.url)

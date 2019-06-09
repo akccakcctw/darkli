@@ -1,22 +1,30 @@
 const path = require('path');
 
 module.exports = {
-	"extends": "airbnb-base",
-	"plugins": [
-		"import"
+  root: true,
+	extends: [
+    'airbnb-base',
+  ],
+	plugins: [
+		'import',
 	],
-	"env": {
-		"browser": true,
-		"es6": true,
+  parserOptions: {
+    parser: require.resolve('babel-eslint'),
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+	env: {
+		browser: true,
+		es6: true,
 	},
-	"rules": {
-		"no-console": 0,
-    "no-plusplus": 0,
-    "no-param-reassign": 0,
-    "no-underscore-dangle": 0,
+	rules: {
+		'no-console': 0,
+    'no-plusplus': 0,
+    'no-param-reassign': 0,
+    'no-underscore-dangle': 0,
 	},
-  "settings": {
-    "import/resolver": {
+  settings: {
+    'import/resolver': {
       alias: {
         map: [
           ['^@base', path.resolve(__dirname)],
@@ -25,5 +33,13 @@ module.exports = {
         extensions: ['.js', '.json', '.scss'],
       }
     },
-  }
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['test/**'],
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
+  },
 };
