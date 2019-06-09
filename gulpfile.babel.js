@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
-import { getEnv } from './build-tasks/env';
+import { getEnv } from './bin/env';
 
 const $ = gulpLoadPlugins();
 
