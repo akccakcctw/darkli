@@ -20,8 +20,8 @@ Directly download the files below
   - [JS](https://raw.githubusercontent.com/akccakcctw/darkli/master/dist/darkli.min.js) ( [view in GitHub](https://github.com/akccakcctw/darkli/blob/master/dist/darkli.min.js) )
 
 Or using from CDN
-  - [CSS](https://cdn.jsdelivr.net/npm/darkli@0.7.0/dist/darkli.min.css)
-  - [JS](https://cdn.jsdelivr.net/npm/darkli@0.7.0/dist/darkli.min.js)
+  - [CSS](https://cdn.jsdelivr.net/npm/darkli@latest/dist/darkli.min.css)
+  - [JS](https://cdn.jsdelivr.net/npm/darkli@latest/dist/darkli.min.js)
 
 ### 2. Include Files To Website/App
 
@@ -67,18 +67,18 @@ const darkli = new Darkli({ heightAuto: true });
 
 ## Parameters
 
-| Parameter   | Type     | Default                | Description |
-| ----------- | -------- | ---------------------- | ----------- |
-| box         | string   | '.darkli'              | |
-| contents    | string   | '.darkli-content'      | |
-| btnOpens    | string   | '[data-darkli]'        | |
-| btnClose    | string   | '.darkli .darkli-close'| |
-| heightAuto  | boolean  | false                  | Set to **true** and box will adopt its content height |
-| closeKeys   | array    | [27, 8]                | keyCode: 27(esc), 8(backspace) |
-| beforeOpen  | function |                        | Will be executed before open |
-| afterOpen   | function |                        | Will be executed after open |
-| beforeClose | function |                        | Will be executed before close |
-| afterClose  | function |                        | Will be executed after close |
+| Parameter   | Type     | Default                 | Description                                           |
+| ----------- | -------- | ----------------------  | ----------------------------------------------------- |
+| box         | string   | '.darkli'               |                                                       |
+| contents    | string   | '.darkli-content'       |                                                       |
+| btnOpens    | string   | '[data-darkli]'         |                                                       |
+| btnClose    | string   | '.darkli .darkli-close' |                                                       |
+| heightAuto  | boolean  | false                   | Set to **true** and box will adopt its content height |
+| closeKeys   | array    | [27, 8]                 | keyCode: 27(esc), 8(backspace)                        |
+| beforeOpen  | function |                         | Will be executed before open                          |
+| afterOpen   | function |                         | Will be executed after open                           |
+| beforeClose | function |                         | Will be executed before close                         |
+| afterClose  | function |                         | Will be executed after close                          |
 
 ## Methods
 
@@ -106,33 +106,22 @@ $ npm install # or yarn
 ### Usage
 
 ```sh
-# Build `sass`, `javascript`, `demo` and minified files:
-$ npm start # or `npm run gulp`
+# Build for development (watch file change)
+$ npm run dev
 
-# Build `sass`, `javascript`, and then watch file
-$ npm run gulp watch
-
-# Uglify and minify `.css` and `.js` files
-$ npm run gulp min
-
-# You can also use these commands below
-$ npm run gulp js
-$ npm run gulp css
-$ npm run gulp js-min
-$ npm run gulp css-min
+# Build for production
+$ npm run prod
 ```
 
-Checking gulpfile.js for more details.
+Checking gulpfile.babel.js for more details.
 
 ### Testing
 
 **Unit test**
 
 ```sh
-# Lint and then do unit test with AVA
-$ npm test
-
-$ npm run ava
+# Run unit test with AVA
+$ npm run test:unit
 
 $ npm run ava:watch
 ```
@@ -141,18 +130,9 @@ $ npm run ava:watch
 
 We use [Nightwatch.js](http://nightwatchjs.org/) as our E2E test tool.
 
-Before test, you should start a localhost server at `8000` port, use gulp task to start it:
-
 ```sh
-$ npm run gulp localhost
-```
-
-Then you can start the E2E test:
-```sh
-$ npm run e2e
-
-# firefox
-$ npm run e2e:firefox
+# Run e2e test
+$ npm run test:e2e
 ```
 
 ### Show File Structure
