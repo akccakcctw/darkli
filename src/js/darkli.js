@@ -4,11 +4,13 @@ import * as box from './components/box';
 import * as utils from './components/utils';
 import * as polyfill from './components/polyfills';
 
-let Otherdarkli;
+import 'url-search-params-polyfill';
 
 // polyfills
 polyfill.nodeListForEach();
 polyfill.elementMatches();
+
+let Otherdarkli;
 
 class Darkli {
   constructor(cfg) {

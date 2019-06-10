@@ -12,8 +12,11 @@ export function open(targetContent) {
     return resolve();
   });
   const _open = () => new Promise((resolve) => {
-    const newURL = utils.updateQueryString(document.URL, 'darkli', targetContent);
-    window.history.pushState(targetContent, null, newURL);
+    const newSearch = utils.updateQueryString({
+      key: 'darkli',
+      val: targetContent,
+    });
+    window.history.pushState(targetContent, null, `?${newSearch}`);
     this.config.box.classList.add('is-active');
     const boxContentClasses = ['is-active'];
     if (this.config.heightAuto) boxContentClasses.push('is-height-auto');

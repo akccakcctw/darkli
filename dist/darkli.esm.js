@@ -16,13 +16,13 @@ import 'core-js/modules/es.object.to-string';
 import 'core-js/modules/es.promise';
 import 'core-js/modules/es.regexp.exec';
 import 'core-js/modules/es.regexp.to-string';
-import 'core-js/modules/es.array.concat';
-import 'core-js/modules/es.array.index-of';
+import 'core-js/modules/es.array.iterator';
 import 'core-js/modules/es.object.keys';
-import 'core-js/modules/es.regexp.constructor';
-import 'core-js/modules/es.string.match';
-import 'core-js/modules/es.string.replace';
+import 'core-js/modules/es.string.search';
+import 'core-js/modules/web.dom-collections.iterator';
+import 'core-js/modules/web.url';
 import 'core-js/modules/es.number.constructor';
+import 'url-search-params-polyfill';
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -63,24 +63,20 @@ var CONFIG = {
 
 };
 
-function updateQueryString(uri, key, value) {
-  var re = new RegExp("([?&])".concat(key, "=.*?(&|$)"), 'i');
-  var separator = uri.indexOf('?') !== -1 ? '&' : '?';
-
-  if (uri.match(re)) {
-    return uri.replace(re, "$1".concat(key, "=").concat(value, "$2"));
-  }
-
-  return "".concat(uri + separator + key, "=").concat(value);
+function updateQueryString(_ref) {
+  var _ref$search = _ref.search,
+      search = _ref$search === void 0 ? window.location.search : _ref$search,
+      _ref$key = _ref.key,
+      key = _ref$key === void 0 ? 'darkli' : _ref$key,
+      val = _ref.val;
+  var searchParams = new URLSearchParams(search);
+  searchParams.set(key, val);
+  return searchParams.toString();
 }
 function getQueryString(key) {
-  var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.URL;
-  var name = key.replace(/[[\]]/g, '\\$&');
-  var re = new RegExp("[?&]".concat(name, "(=([^&#]*)|&|#|$)"));
-  var results = re.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.search;
+  var searchParams = new URLSearchParams(url);
+  return searchParams.get(key);
 }
 function createSVG(tag, attrs) {
   var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -128,8 +124,11 @@ function open(targetContent) {
     return new Promise(function (resolve) {
       var _this$config$box$quer;
 
-      var newURL = updateQueryString(document.URL, 'darkli', targetContent);
-      window.history.pushState(targetContent, null, newURL);
+      var newSearch = updateQueryString({
+        key: 'darkli',
+        val: targetContent
+      });
+      window.history.pushState(targetContent, null, "?".concat(newSearch));
 
       _this.config.box.classList.add('is-active');
 
@@ -252,10 +251,9 @@ function elementMatches() {
   }
 }
 
-var Otherdarkli; // polyfills
-
 nodeListForEach();
 elementMatches();
+var Otherdarkli;
 
 var Darkli =
 /*#__PURE__*/
