@@ -59,8 +59,8 @@
     return searchParams.toString();
   }
   function getQueryString(key) {
-    var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.search;
-    var searchParams = new URLSearchParams(url);
+    var search = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.search;
+    var searchParams = new URLSearchParams(search);
     return searchParams.get(key);
   }
   function createSVG(tag, attrs) {
