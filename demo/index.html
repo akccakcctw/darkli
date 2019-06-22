@@ -5,78 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Darkli: Small and Clean Lightbox Script</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4="
-    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous" />
   <link rel="stylesheet" href="darkli.css">
   <!-- below are styles for this demo -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.3/themes/prism-okaidia.min.css" integrity="sha256-e1bqZBSPbpH18ISDr1aR1mwb4PWTG/3QFxE51/22n14="
-    crossorigin="anonymous" />
-  <style>
-    body {
-      background-color: #F1F1F1;
-      font-family: monospace, sans-serif;
-      line-height: 1.72;
-      font-size: 16px;
-      color: #333;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: calc(10vw + 8px);
-      font-weight: lighter;
-      margin: 0 auto;
-    }
-
-    @media screen and (min-width: 600px) {
-      h1 {
-        font-size: 3.75rem;
-      }
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: lighter;
-      margin: 0 auto;
-    }
-
-    h3 {
-      font-size: 1.4rem;
-      margin: 2rem auto 1rem;
-    }
-
-    main {
-      max-width: 800px;
-      padding: 10px 20px 40px;
-      margin: 0 auto;
-    }
-
-    hr {
-      margin: 20px auto;
-    }
-
-    .btn {
-      background: none;
-      border: 1px solid;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 1.2rem;
-      margin: 0;
-      padding: 0.2rem .8rem;
-      transition: .1s ease-in-out;
-    }
-
-    .btn:hover {
-      background-color: #333;
-      border-color: #333;
-      color: #F1F1F1;
-    }
-
-    .darkli .title {
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism-okaidia.min.css" integrity="sha256-Ykz0nNWK7w4QWJUYR7OraN4773aMB/11aMt1nZyrhuQ=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
@@ -85,24 +18,28 @@
     <h2>Small and Clean Lightbox Script</h2>
     <hr>
     <h3>Demos</h3>
-    <button class="btn" data-darkli="c1">content</button>
-    <button class="btn" data-darkli="c2">image</button>
-    <button class="btn" href="https://www.youtube.com/embed/My4j3vgFxbE" data-darkli>youtube</button>
+    <div class="btn-container">
+      <button class="btn" data-darkli="c1">content</button>
+      <button class="btn" data-darkli="c2">image</button>
+      <button class="btn" href="https://www.youtube.com/embed/My4j3vgFxbE" data-darkli>youtube</button>
+    </div>
     <h3>Methods</h3>
     You can open/close box with js directly, just try to type following command in your console.
-    <pre><code class="language-javascript">
-// open `data-darkli-content="c1"`
-darkli.open('c1');
+    <pre>
+      <code class="language-javascript">
+        // open `data-darkli-content="c1"`
+        darkli.open('c1');
 
-// close
-darkli.close();
+        // close
+        darkli.close();
 
-// create
-darkli.create({content: `
-  &lt;p class="title"&gt;Title&lt;/p&gt;
-  &lt;p&gt;content&lt;/p&gt;
-`});
-    </code></pre>
+        // create
+        darkli.create({content: `
+          &lt;p class="title"&gt;Title&lt;/p&gt;
+          &lt;p&gt;content&lt;/p&gt;
+        `});
+      </code>
+    </pre>
     <h3>Documentation</h3>
     Please check
     <a href="https://github.com/akccakcctw/darkli/blob/master/README.md">README.md</a> for more details.
@@ -128,7 +65,7 @@ darkli.create({content: `
       </div>
       <div class="darkli-content" data-darkli-content="c2">
         <img src="https://source.unsplash.com/user/nasa/1600x900" alt="nasa image">
-        <span class="" style="font-style:italic;float: right;">Photo Credits: Nasa / unsplash.com</span>
+        <span style="font-style:italic;float: right;">Photo Credits: Nasa / unsplash.com</span>
       </div>
     </div>
   </main>
@@ -143,38 +80,9 @@ darkli.create({content: `
         fill="currentColor" class="octo-body"></path>
     </svg>
   </a>
-  <style>
-    .github-corner:hover .octo-arm {
-      animation: octocat-wave 560ms ease-in-out
-    }
-
-    @keyframes octocat-wave {
-      0%,
-      100% {
-        transform: rotate(0)
-      }
-      20%,
-      60% {
-        transform: rotate(-25deg)
-      }
-      40%,
-      80% {
-        transform: rotate(10deg)
-      }
-    }
-
-    @media (max-width:500px) {
-      .github-corner:hover .octo-arm {
-        animation: none
-      }
-      .github-corner .octo-arm {
-        animation: octocat-wave 560ms ease-in-out
-      }
-    }
-  </style>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.8.3/prism.min.js" integrity="sha256-haEv2ilTk2sXcJaGbkTtErRCHy/qGt3g+bGbgPf5OTY="
-  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/prism.min.js" integrity="sha256-NFZVyNmS1YlmiklazBA+TALYJlJtZj/y/i/oADk6CVE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha256-abVQckxqXkWO8NiZk8TBPHzv3/LObzIqzzQWz0kV0F0=" crossorigin="anonymous"></script>
 <script src="darkli.js"></script>
 <script>
   const darkli = new Darkli();
