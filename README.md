@@ -62,7 +62,7 @@ In your html file:
 const darkli = new Darkli();
 
 // with custom config
-const darkli = new Darkli({ heightAuto: true });
+const darkli = new Darkli({ heightAuto: false });
 ```
 
 ## Parameters
@@ -74,7 +74,7 @@ const darkli = new Darkli({ heightAuto: true });
 | btnOpens     | string   | '[data-darkli]'         |                                                       |
 | btnClose     | string   | '.darkli .darkli-close' |                                                       |
 | bodyNoScroll | boolean  | true                    | controll whether body should fixed when modal open    |
-| heightAuto   | boolean  | false                   | Set to **true** and box will adopt its content height |
+| heightAuto   | boolean  | true                    | Set to **true** and box will adopt its content height |
 | closeKeys    | array    | [27, 8]                 | keyCode: 27(esc), 8(backspace)                        |
 | beforeOpen   | function |                         | Will be executed before open                          |
 | afterOpen    | function |                         | Will be executed after open                           |
