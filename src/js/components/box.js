@@ -16,6 +16,8 @@ export function open(targetContent) {
       key: 'darkli',
       val: targetContent,
     });
+    if (this.config.bodyNoScroll) document.body.classList.add('darkli-no-scroll');
+
     window.history.pushState(targetContent, null, `?${newSearch}`);
     this.config.box.classList.add('is-active');
     const boxContentClasses = ['is-active'];
@@ -41,6 +43,8 @@ export function close(popHistory = true) {
     return resolve();
   });
   const _close = () => new Promise((resolve) => {
+    if (this.config.bodyNoScroll) document.body.classList.remove('darkli-no-scroll');
+
     this.config.box.classList.remove('is-active');
     this.config.box.querySelectorAll('.darkli-content').forEach((content) => {
       if (content.classList.contains('auto-destroy')) {

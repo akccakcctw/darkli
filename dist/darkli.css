@@ -1,3 +1,6 @@
+.darkli-no-scroll {
+  overflow: hidden; }
+
 .darkli {
   position: fixed;
   opacity: 0;

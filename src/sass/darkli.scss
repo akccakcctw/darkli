@@ -1,4 +1,9 @@
 @import 'mixin/_breakpoint';
+
+.darkli-no-scroll {
+  overflow: hidden;
+}
+
 .darkli {
   * {
     box-sizing: border-box;
