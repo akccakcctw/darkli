@@ -67,18 +67,19 @@ const darkli = new Darkli({ heightAuto: true });
 
 ## Parameters
 
-| Parameter   | Type     | Default                 | Description                                           |
-| ----------- | -------- | ----------------------  | ----------------------------------------------------- |
-| box         | string   | '.darkli'               |                                                       |
-| contents    | string   | '.darkli-content'       |                                                       |
-| btnOpens    | string   | '[data-darkli]'         |                                                       |
-| btnClose    | string   | '.darkli .darkli-close' |                                                       |
-| heightAuto  | boolean  | false                   | Set to **true** and box will adopt its content height |
-| closeKeys   | array    | [27, 8]                 | keyCode: 27(esc), 8(backspace)                        |
-| beforeOpen  | function |                         | Will be executed before open                          |
-| afterOpen   | function |                         | Will be executed after open                           |
-| beforeClose | function |                         | Will be executed before close                         |
-| afterClose  | function |                         | Will be executed after close                          |
+| Parameter    | Type     | Default                 | Description                                           |
+| -----------  | -------- | ----------------------  | ----------------------------------------------------- |
+| box          | string   | '.darkli'               |                                                       |
+| contents     | string   | '.darkli-content'       |                                                       |
+| btnOpens     | string   | '[data-darkli]'         |                                                       |
+| btnClose     | string   | '.darkli .darkli-close' |                                                       |
+| bodyNoScroll | boolean  | true                    | controll whether body should fixed when modal open    |
+| heightAuto   | boolean  | false                   | Set to **true** and box will adopt its content height |
+| closeKeys    | array    | [27, 8]                 | keyCode: 27(esc), 8(backspace)                        |
+| beforeOpen   | function |                         | Will be executed before open                          |
+| afterOpen    | function |                         | Will be executed after open                           |
+| beforeClose  | function |                         | Will be executed before close                         |
+| afterClose   | function |                         | Will be executed after close                          |
 
 ## Methods
 
