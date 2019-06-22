@@ -24,3 +24,6 @@ node_modules
 # E2E reports
 test/e2e/reports
 test/e2e/screenshots
+
+# Others
+.size-snapshot.json

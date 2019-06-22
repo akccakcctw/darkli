@@ -1,6 +1,7 @@
 import replace from 'rollup-plugin-replace';
 import { uglify } from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 import baseConfig from './rollup.config.base';
 import { name, author, version as packageVersion } from './package.json';
@@ -48,6 +49,7 @@ export default [
       replace({
         __VERSION__: version,
       }),
+      sizeSnapshot(),
     ],
   },
   // .min.js
@@ -66,6 +68,7 @@ export default [
       replace({
         __VERSION__: version,
       }),
+      sizeSnapshot(),
       uglify({
         compress: {
           drop_console: true,

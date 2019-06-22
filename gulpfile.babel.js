@@ -75,6 +75,7 @@ const minifyCSS = () => gulp.src(paths.styles.src)
 
 const compileJS = () => gulp.src('.')
   .pipe($.exec('npm run dev:js'))
+  .pipe($.exec.reporter())
   .pipe($.notify({
     message: 'Compile JavaScript Complete!',
     onLast: true,
@@ -83,6 +84,7 @@ const compileJS = () => gulp.src('.')
 
 const minifyJS = () => gulp.src('.')
   .pipe($.exec('npm run prod:js'))
+  .pipe($.exec.reporter())
   .pipe($.notify({
     message: 'Minify JavaScript Complete!',
     onLast: true,
