@@ -59,8 +59,9 @@ var CONFIG = {
   btnOpens: '[data-darkli]',
   btnClose: '.darkli .darkli-close',
   heightAuto: false,
-  closeKeys: [27, 8] // 27(esc), 8(backspace)
-
+  closeKeys: [27, 8],
+  // 27(esc), 8(backspace)
+  bodyNoScroll: true
 };
 
 function updateQueryString(_ref) {
@@ -128,6 +129,7 @@ function open(targetContent) {
         key: 'darkli',
         val: targetContent
       });
+      if (_this.config.bodyNoScroll) document.body.classList.add('darkli-no-scroll');
       window.history.pushState(targetContent, null, "?".concat(newSearch));
 
       _this.config.box.classList.add('is-active');
@@ -171,6 +173,8 @@ function close() {
 
   var _close = function _close() {
     return new Promise(function (resolve) {
+      if (_this2.config.bodyNoScroll) document.body.classList.remove('darkli-no-scroll');
+
       _this2.config.box.classList.remove('is-active');
 
       _this2.config.box.querySelectorAll('.darkli-content').forEach(function (content) {
