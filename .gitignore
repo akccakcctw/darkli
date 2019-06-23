@@ -27,3 +27,4 @@ test/e2e/screenshots
 
 # Others
 .size-snapshot.json
+.idea
