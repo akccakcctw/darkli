@@ -31,7 +31,8 @@
     right: 5px;
     opacity: .5;
     -webkit-transition: .1s ease-in-out;
-    transition: .1s ease-in-out; }
+    transition: .1s ease-in-out;
+    mix-blend-mode: difference; }
     @media (min-width: 600px) {
       .darkli .darkli-close {
         top: 30px;

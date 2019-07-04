@@ -34,6 +34,7 @@
     right: 5px;
     opacity: .5;
     transition: .1s ease-in-out;
+    mix-blend-mode: difference;
     @include for-tablet-portrait-up {
       top: 30px;
       right: 20px;
