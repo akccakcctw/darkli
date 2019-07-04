@@ -27,7 +27,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    top: 5px;
+    top: 10px;
     right: 5px;
     opacity: .5;
     -webkit-transition: .1s ease-in-out;
@@ -42,13 +42,13 @@
     .darkli .darkli-close .darkli-icon {
       width: 20px;
       height: 20px;
+      fill: #FFF;
       -webkit-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5));
               filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.5)); }
       @media (min-width: 600px) {
         .darkli .darkli-close .darkli-icon {
           width: 25px;
-          height: 25px;
-          fill: #FFF; } }
+          height: 25px; } }
   .darkli .darkli-content {
     display: none;
     position: absolute;
