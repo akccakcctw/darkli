@@ -1,6 +1,6 @@
 /*!
  * Darkli v0.7.2
- * (c) 2019 Rex Tsou <akccakccwww@gmail.com>
+ * (c) 2020 Rex Tsou <akccakccwww@gmail.com>
  * Released under the MIT License.
  */
 'use strict';
@@ -8,12 +8,10 @@
 require('core-js/modules/es.array.for-each');
 require('core-js/modules/es.array.from');
 require('core-js/modules/es.array.includes');
-require('core-js/modules/es.function.name');
 require('core-js/modules/es.object.assign');
 require('core-js/modules/es.string.includes');
 require('core-js/modules/es.string.iterator');
 require('core-js/modules/web.dom-collections.for-each');
-require('core-js/modules/es.date.to-string');
 require('core-js/modules/es.object.to-string');
 require('core-js/modules/es.promise');
 require('core-js/modules/es.regexp.exec');

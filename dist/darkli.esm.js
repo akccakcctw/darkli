@@ -1,17 +1,15 @@
 /*!
  * Darkli v0.7.2
- * (c) 2019 Rex Tsou <akccakccwww@gmail.com>
+ * (c) 2020 Rex Tsou <akccakccwww@gmail.com>
  * Released under the MIT License.
  */
 import 'core-js/modules/es.array.for-each';
 import 'core-js/modules/es.array.from';
 import 'core-js/modules/es.array.includes';
-import 'core-js/modules/es.function.name';
 import 'core-js/modules/es.object.assign';
 import 'core-js/modules/es.string.includes';
 import 'core-js/modules/es.string.iterator';
 import 'core-js/modules/web.dom-collections.for-each';
-import 'core-js/modules/es.date.to-string';
 import 'core-js/modules/es.object.to-string';
 import 'core-js/modules/es.promise';
 import 'core-js/modules/es.regexp.exec';

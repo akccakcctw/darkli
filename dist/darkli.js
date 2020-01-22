@@ -1,13 +1,13 @@
 /*!
  * Darkli v0.7.2
- * (c) 2019 Rex Tsou <akccakccwww@gmail.com>
+ * (c) 2020 Rex Tsou <akccakccwww@gmail.com>
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('core-js/modules/es.array.for-each'), require('core-js/modules/es.array.from'), require('core-js/modules/es.array.includes'), require('core-js/modules/es.function.name'), require('core-js/modules/es.object.assign'), require('core-js/modules/es.string.includes'), require('core-js/modules/es.string.iterator'), require('core-js/modules/web.dom-collections.for-each'), require('core-js/modules/es.date.to-string'), require('core-js/modules/es.object.to-string'), require('core-js/modules/es.promise'), require('core-js/modules/es.regexp.exec'), require('core-js/modules/es.regexp.to-string'), require('core-js/modules/es.array.iterator'), require('core-js/modules/es.object.keys'), require('core-js/modules/es.string.search'), require('core-js/modules/web.dom-collections.iterator'), require('core-js/modules/web.url'), require('core-js/modules/es.number.constructor'), require('url-search-params-polyfill')) :
-  typeof define === 'function' && define.amd ? define(['core-js/modules/es.array.for-each', 'core-js/modules/es.array.from', 'core-js/modules/es.array.includes', 'core-js/modules/es.function.name', 'core-js/modules/es.object.assign', 'core-js/modules/es.string.includes', 'core-js/modules/es.string.iterator', 'core-js/modules/web.dom-collections.for-each', 'core-js/modules/es.date.to-string', 'core-js/modules/es.object.to-string', 'core-js/modules/es.promise', 'core-js/modules/es.regexp.exec', 'core-js/modules/es.regexp.to-string', 'core-js/modules/es.array.iterator', 'core-js/modules/es.object.keys', 'core-js/modules/es.string.search', 'core-js/modules/web.dom-collections.iterator', 'core-js/modules/web.url', 'core-js/modules/es.number.constructor', 'url-search-params-polyfill'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('core-js/modules/es.array.for-each'), require('core-js/modules/es.array.from'), require('core-js/modules/es.array.includes'), require('core-js/modules/es.object.assign'), require('core-js/modules/es.string.includes'), require('core-js/modules/es.string.iterator'), require('core-js/modules/web.dom-collections.for-each'), require('core-js/modules/es.object.to-string'), require('core-js/modules/es.promise'), require('core-js/modules/es.regexp.exec'), require('core-js/modules/es.regexp.to-string'), require('core-js/modules/es.array.iterator'), require('core-js/modules/es.object.keys'), require('core-js/modules/es.string.search'), require('core-js/modules/web.dom-collections.iterator'), require('core-js/modules/web.url'), require('core-js/modules/es.number.constructor'), require('url-search-params-polyfill')) :
+  typeof define === 'function' && define.amd ? define(['core-js/modules/es.array.for-each', 'core-js/modules/es.array.from', 'core-js/modules/es.array.includes', 'core-js/modules/es.object.assign', 'core-js/modules/es.string.includes', 'core-js/modules/es.string.iterator', 'core-js/modules/web.dom-collections.for-each', 'core-js/modules/es.object.to-string', 'core-js/modules/es.promise', 'core-js/modules/es.regexp.exec', 'core-js/modules/es.regexp.to-string', 'core-js/modules/es.array.iterator', 'core-js/modules/es.object.keys', 'core-js/modules/es.string.search', 'core-js/modules/web.dom-collections.iterator', 'core-js/modules/web.url', 'core-js/modules/es.number.constructor', 'url-search-params-polyfill'], factory) :
   (global = global || self, global.Darkli = factory());
-}(this, function () { 'use strict';
+}(this, (function () { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -375,5 +375,5 @@
 
   return Darkli;
 
-}));
+})));
 //# sourceMappingURL=darkli.js.map
